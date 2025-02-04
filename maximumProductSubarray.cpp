@@ -3,13 +3,22 @@ public:
     int maxProduct(vector<int>& nums) 
     {
         int ans = INT_MIN;
-        vector<int> prefix(nums.size());
-        prefix[0] = nums[0];
-        ans = prefix[0];
-        for(int i = 1; i < nums.size(); i++)
+        int left_side = 1;
+        int right_side = 1;
+        int n = nums.size();
+        for(int i = 0; i < nums.size(); i++)
         {
-            prefix[i] = prefix[i-1] * nums[i];
-            ans = max(ans, prefix[i]);
+            left_side *= nums[i];
+            right_side *= nums[n-1-i];
+            ans = max({ans, left_side, right_side});
+            if(left_side == 0)
+            {
+                left_side = 1;
+            }
+            if(right_side == 0)
+            {
+                right_side = 1;
+            }
         }
         return ans;
     }
