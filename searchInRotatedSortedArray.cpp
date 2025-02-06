@@ -7,6 +7,7 @@ public:
         while(left < right)
         {
             int mid = left + ((right-left)/2);
+            //wrong 
             cout << left << " " << mid << " " << right << endl;
             if(nums[mid] == target)
             {
