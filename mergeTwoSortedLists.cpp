@@ -20,18 +20,30 @@ public:
         {
             return list1;
         }
-        if(list1 == nullptr && list2 == nullptr)
-        {
-            return nullptr;
-        }
         ListNode* ans  = new ListNode(0);
-        dummy = ans;
+        ListNode* dummy = ans;
         while(list1 != nullptr && list2 != nullptr)
         {
             if(list1->val <= list2->val)
             {
                 dummy->next = list1;
+                list1 = list1->next;
             }
+            else
+            {
+                dummy->next = list2;
+                list2 = list2->next;
+            }
+            dummy = dummy->next;
         }
+        if(list1 != nullptr)
+        {
+            dummy->next = list1;
+        }
+        if(list2 != nullptr)
+        {
+            dummy->next = list2;
+        }
+        return ans->next;
     }
 };
