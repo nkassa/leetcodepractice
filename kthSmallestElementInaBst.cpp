@@ -17,14 +17,14 @@ public:
         dfs(root);
         return list[k-1];
     }
-    void dfs(TreeNode* node)
+    void dfs(TreeNode* root)
     {
-        if(node == nullptr)
+        if(root == nullptr)
         {
             return;
         }
-        dfs(node->left);
-        list.push_back(node->val);
-        dfs(node->right);
+        dfs(root->left);
+        list.push_back(root->val);
+        dfs(root->right);
     }
 };
