@@ -13,13 +13,16 @@ class Solution {
 public:
     int maxDepth(TreeNode* root) 
     {
+
         if(root == nullptr)
         {
             return 0;
         }
+        
         int ans = 0;
         queue<TreeNode*> queue;
         queue.push(root);
+
         while(!queue.empty())
         {
             int size = queue.size();
