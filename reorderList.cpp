@@ -16,6 +16,7 @@ public:
         {
             return;
         }
+
         stack<ListNode*> stack;
         ListNode* curr = head;
         while(curr != nullptr)
@@ -23,12 +24,15 @@ public:
             stack.push(curr);
             curr = curr->next;
         }
+
         int size = stack.size();
-        curr = head;
-        int cnt = 0;
-        ListNode* ans = new ListNode(0);
+        int cnt = 1;
+
+        ListNode* ans = head;
         ListNode* c = ans;
-        while(cnt <= size)
+        curr = head->next;
+
+        while(cnt < size)
         {
             if(cnt % 2 == 0)
             {
@@ -44,6 +48,6 @@ public:
             cnt++;
         }
         ans->next = nullptr;
-        head = c->next;
+        head = c;
     }
 };
