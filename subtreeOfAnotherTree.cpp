@@ -11,37 +11,29 @@
  */
 class Solution {
 public:
-    bool ans = true;
     bool isSubtree(TreeNode* root, TreeNode* subRoot) 
     {
-        dfs(root, subRoot);
-        return ans;
+        if(root == nullptr)
+        {
+            return false;
+        }
+        if(dfs(root, subRoot) == true)
+        {
+            return true;
+        }
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 
-    void dfs(TreeNode* root, TreeNode* subRoot)
+    bool dfs(TreeNode* root, TreeNode* subRoot)
     {
         if(root == nullptr && subRoot == nullptr)
         {
-            return;
+            return true;
         } 
-        if(root == nullptr)
+        if(root == nullptr || subRoot == nullptr)
         {
-            ans = false;
-            return;
+            return false;
         }
-        if(subRoot == nullptr)
-        {
-            return;
-        }
-        if(root->val == subRoot->val)
-        {
-            dfs(root->left, subRoot->left);
-            dfs(root->right, subRoot->right);
-        }
-        else
-        {
-            dfs(root->left, subRoot);
-            dfs(root->right, subRoot);
-        }
+        return root->val == subRoot->val && dfs(root->left, subRoot->left) && dfs(root->right, subRoot->right);
     }
 };
