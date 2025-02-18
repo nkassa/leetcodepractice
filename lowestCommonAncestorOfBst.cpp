@@ -26,7 +26,13 @@ public:
         {
             ans = root;
         }
-        dfs(root->left, p, q, min, root->val);
-        dfs(root->right, p,q, root->val, max);
+        if(p < root->val && q < root->val)
+        {
+            dfs(root->left, p, q, min, root->val);
+        }
+        if(p > root->val && q > root->val)
+        {
+            dfs(root->right, p,q, root->val, max);
+        }
     }
 };
