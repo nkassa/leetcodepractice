@@ -10,29 +10,20 @@
 
 class Solution {
 public:
-    TreeNode* ans;
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
-    {
-        dfs(root, p->val, q->val, INT_MIN, INT_MAX);
-        return ans;
-    }
-    void dfs(TreeNode* root, int p, int q, int min, int max)
     {
         if(root == nullptr)
         {
-            return;
+            return nullptr;
         }
-        if(p > min && p < max && q > min && q < max)
+        if(root->val > p->val && root->val > q->val)
         {
-            ans = root;
+            return lowestCommonAncestor(root->left, p, q);
         }
-        if(p < root->val && q < root->val)
+        else if(root->val < p->val && root->val < q->val)
         {
-            dfs(root->left, p, q, min, root->val);
+            return lowestCommonAncestor(root->right, p, q);
         }
-        if(p > root->val && q > root->val)
-        {
-            dfs(root->right, p,q, root->val, max);
-        }
+        return root;
     }
 };
