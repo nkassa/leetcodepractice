@@ -2,24 +2,28 @@ class Solution {
 public:
     bool isValid(string s) 
     {
-        unordered_map<char,char> count = {{'[', ']'}, {'{', '}'}, {'(', ')'}};
+        unordered_map<char,char> count = {{')','('}, {']','['}, {'}','{'}};
         stack<char> stack;
-        for(int i = 0; i < s.size(); i++)
+        if(count.find(s[0]) != count.end())
         {
-            if(count.find(s[i]) == count.end())
+            return false;
+        }
+        for(char c: s)
+        {
+            if(count.find(c) != count.end())
             {
-                if(stack.empty() || count[stack.top()] != s[i])
-                {
-                    return false;
-                }
-                else
+                if(!stack.empty() && stack.top() == count[c])
                 {
                     stack.pop();
+                }
+                else if(!stack.empty() && stack.top() != count[c])
+                {
+                    return false;
                 }
             }
             else
             {
-                stack.push(s[i]);
+                stack.push(c);
             }
         }
         return stack.size() == 0;
