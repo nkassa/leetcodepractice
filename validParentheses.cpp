@@ -16,7 +16,7 @@ public:
                 {
                     stack.pop();
                 }
-                else if(!stack.empty() && stack.top() != count[c])
+                else if(stack.empty() || stack.top() != count[c])
                 {
                     return false;
                 }
@@ -29,5 +29,3 @@ public:
         return stack.size() == 0;
     }
 };
-
-//doesnt work
