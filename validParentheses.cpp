@@ -2,17 +2,17 @@ class Solution {
 public:
     bool isValid(string s) 
     {
-        unordered_map<char,char> count = {{')','('}, {']','['}, {'}','{'}};
+        unordered_map<char,char> count = {{'(',')'}, {'[',']'}, {'{','}'}};
         stack<char> stack;
         for(char c: s)
         {
-            if(count.find(c) != count.end())
+            if(count.find(c) == count.end())
             {
-                if(!stack.empty() && stack.top() == count[c])
+                if(!stack.empty() && count[stack.top()] == c)
                 {
                     stack.pop();
                 }
-                else if(stack.empty() || stack.top() != count[c])
+                else if(stack.empty() || count[stack.top()] != c)
                 {
                     return false;
                 }
