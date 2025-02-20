@@ -4,10 +4,6 @@ public:
     {
         unordered_map<char,char> count = {{')','('}, {']','['}, {'}','{'}};
         stack<char> stack;
-        if(count.find(s[0]) != count.end())
-        {
-            return false;
-        }
         for(char c: s)
         {
             if(count.find(c) != count.end())
