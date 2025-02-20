@@ -10,8 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) 
-    {
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         if(list1 == nullptr)
         {
             return list2;
@@ -20,30 +19,40 @@ public:
         {
             return list1;
         }
-        ListNode* ans  = new ListNode(0);
-        ListNode* dummy = ans;
+        ListNode* head;
+        if(list1->val <= list2->val)
+        {
+            head = list1;
+            list1 = list1->next;
+        }
+        else
+        {
+            head = list2;
+            list2 = list2->next;
+        }
+        ListNode* top = head;
         while(list1 != nullptr && list2 != nullptr)
         {
             if(list1->val <= list2->val)
             {
-                dummy->next = list1;
+                head->next = list1;
                 list1 = list1->next;
             }
             else
             {
-                dummy->next = list2;
+                head->next = list2;
                 list2 = list2->next;
             }
-            dummy = dummy->next;
+            head = head->next;
         }
         if(list1 != nullptr)
         {
-            dummy->next = list1;
+            head->next = list1;
         }
         if(list2 != nullptr)
         {
-            dummy->next = list2;
+            head->next = list2;
         }
-        return ans->next;
+        return top;
     }
 };
