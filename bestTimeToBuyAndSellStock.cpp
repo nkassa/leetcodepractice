@@ -2,15 +2,14 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) 
     {
-        int left = prices[0];
+        int mini = INT_MAX;
         int maxi = 0;
-        for(int i = 1; i < prices.size(); i++)
+        for(int i = 0; i < prices.size(); i++)
         {
-            left = min(left, prices[i]);
-            if(left < prices[i])
+            mini = min(mini, prices[i]);
+            if(mini < prices[i])
             {
-                cout << prices[i]- left << endl;
-                maxi = max(maxi, prices[i]-left);
+                maxi = max(maxi, prices[i]-mini);
             }
         }
         return maxi;
