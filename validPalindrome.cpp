@@ -2,24 +2,30 @@ class Solution {
 public:
     bool isPalindrome(string s) 
     {
-        string word= "";
-        for(char c: s)
-        {
-            if(isalpha(c) || isdigit(c))
-            {
-                word += c;
-            }
-        }
         int left = 0;
-        int right = word.size()-1;
+        int right = s.size()-1;
         while(left < right)
         {
-            if( tolower(word[left]) != tolower(word[right]))
+            if(isalnum(s[left]) == false)
             {
-                return false;
+                left++;
             }
-            left++;
-            right--;
+            if(isalnum(s[right]) == false)
+            {
+                right--;
+            }
+            if(isalnum(s[left]) && isalnum(s[right]))
+            {
+                if(tolower(s[right]) == tolower(s[left]))
+                {
+                    left++;
+                    right--;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         return true;
     }
