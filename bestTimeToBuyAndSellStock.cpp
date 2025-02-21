@@ -4,12 +4,12 @@ public:
     {
         int mini = INT_MAX;
         int maxi = 0;
-        for(int i = 0; i < prices.size(); i++)
+        for(int num: prices)
         {
-            mini = min(mini, prices[i]);
-            if(mini < prices[i])
+            mini = min(mini, num);
+            if(mini < num)
             {
-                maxi = max(maxi, prices[i]-mini);
+                maxi = max(maxi, num-mini);
             }
         }
         return maxi;
