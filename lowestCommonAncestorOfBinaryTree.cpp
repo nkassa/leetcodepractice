@@ -7,24 +7,23 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
-    {
-        if(root == nullptr || root->val == p->val || root->val == q->val || (root->val > p->val && root->val < q->val) || (root->val < p->val && root->val > q->val))
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == nullptr || root == p || root == q)
         {
             return root;
         }
-
-        if(root->val > p->val && root->val > q->val)
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        if(left && right)
         {
-            return lowestCommonAncestor(root->left, p, q); 
+            return root;
         }
-        else if(root->val < p->val && root->val < q->val)
+        if(left)
         {
-            return lowestCommonAncestor(root->right, p, q); 
+            return left; 
         }
-        return root;
+        return right;
     }
 };
