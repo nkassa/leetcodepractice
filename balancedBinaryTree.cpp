@@ -11,33 +11,28 @@
  */
 class Solution {
 public:
-    vector<int> leaf;
+    bool ans = true;
     bool isBalanced(TreeNode* root) 
-    {
-        dfs(root, 0);
-        int mini = 100000;
-        int maxi = 0;
-        for(int num: leaf)
-        {
-            mini = min(mini, num);
-            maxi = max(maxi, num);
-        }
-        cout << mini << " " << maxi << endl;
-        long int ans = maxi - mini;
-        return ans <= 1;
-    }
-    void dfs(TreeNode* root, int cnt)
     {
         if(root == nullptr)
         {
-            return;
+            return true;
         }
-        cnt++;
+        int left = dfs(root->left, 0);
+        int right = dfs(root->right, 0);
+        int ans = abs(right-left);
+        return ans <= 1;
+    }
+    int dfs(TreeNode* root, int cnt)
+    {
         if(!root->left && !root->right)
         {
-            leaf.push_back(cnt);
+            cout << cnt << " " << root->val << endl;
+            return cnt;
         }
-        dfs(root->left, cnt);
-        dfs(root->right, cnt);
+        int left = dfs(root->left, cnt += 1);
+        int right = dfs(root->right, cnt += 1);
+        cout << left << " " << root->val << " " << right << endl;
+        return 0;
     }
 };
