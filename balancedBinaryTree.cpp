@@ -29,7 +29,6 @@ public:
         }
         int left = dfs(root->left, cnt++);
         int right = dfs(root->right, cnt++);
-        cout << left << " " << root->val << " " << right << endl;
         if(!root->right && !root->left)
         {
             return cnt;
