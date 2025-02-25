@@ -23,17 +23,21 @@ public:
     }
     int dfs(TreeNode* root, int cnt)
     {
+        if(root == nullptr)
+        {
+            return 0;
+        }
+        int left = dfs(root->left, cnt++);
+        int right = dfs(root->right, cnt++);
+        cout << left << " " << root->val << " " << right << endl;
         if(!root->right && !root->left)
         {
             return cnt;
         }
-        int left = dfs(root->left, cnt++);
-        int right = dfs(root->right, cnt++);
-        cout << left << " " << right << endl;
         if(abs(right-left) > 1)
         {
             ans = false;
         }
-        return cnt;
+        return 0;
     }
 };
