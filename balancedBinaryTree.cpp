@@ -11,28 +11,27 @@
  */
 class Solution {
 public:
-    bool ans = true;
+    int diff = 0;
     bool isBalanced(TreeNode* root) 
     {
         if(root == nullptr)
         {
             return true;
         }
-        int left = dfs(root->left, 0);
-        int right = dfs(root->right, 0);
-        int ans = abs(right-left);
-        return ans <= 1;
+        dfs(root);
+        return diff <= 1;
     }
-    int dfs(TreeNode* root, int cnt)
+    int dfs(TreeNode* root)
     {
-        if(!root->left && !root->right)
+        if(root == nullptr)
         {
-            cout << cnt << " " << root->val << endl;
-            return cnt;
+            return 0;
         }
-        int left = dfs(root->left, cnt += 1);
-        int right = dfs(root->right, cnt += 1);
-        cout << left << " " << root->val << " " << right << endl;
-        return 0;
+        int left = dfs(root->left);
+        int right = dfs(root->right);
+        diff = max(diff, abs(right-left));
+        return max(left,right) +1;
     }
 };
+
+//finally worked
