@@ -7,7 +7,7 @@ public:
     {
         int left = 1;
         int right = n;
-        while(left <= right)
+        while(left < right)
         {
             int mid = left + (right-left) / 2;
             if(isBadVersion(mid) == false)
@@ -16,7 +16,7 @@ public:
             }
             else if(isBadVersion(mid) == true)
             {
-                right = mid - 1;
+                right = mid;
             }
         }
         return left;
