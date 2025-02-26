@@ -8,32 +8,13 @@ public:
     {  
     }
     
-    void push(int x) 
-    {
-      s1.push(x);
+    void push(int x) {
+        s1.push(x);
     }
     
     int pop() 
     {
-        if (s1.empty() && s2.empty())
-        {
-            return -1;
-        }
-        else if (!s2.empty()) 
-        {
-            int top = s2.top();
-            s2.pop();
-            return top;
-        }
-        else if (s2.empty())
-        {
-            while(!s1.empty()) 
-            {
-                auto top = s1.top();
-                s1.pop();
-                s2.push(top);
-            }
-        }
+        peek();
         int top = s2.top();
         s2.pop();
         return top;
@@ -41,15 +22,7 @@ public:
     
     int peek() 
     {
-        if (s1.empty() && s2.empty()) 
-        {
-            return -1;
-        }
-        else if (!s2.empty()) 
-        {
-            return s2.top();
-        } 
-        else if (s2.empty()) 
+        if(s2.empty()) 
         {
             while (!s1.empty()) 
             {
