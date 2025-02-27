@@ -13,7 +13,7 @@ public:
             while(val > 2)
             {
                 cnt++;
-                count[key] -= 2;
+                val -= 2;
                 if(val == 0)
                 {
                     count.erase(key);
