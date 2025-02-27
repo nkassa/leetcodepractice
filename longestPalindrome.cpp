@@ -16,6 +16,13 @@ public:
                 val -= 2;
             }
         }
-        return cnt+1;
+        for(auto [key,val]: count)
+        {
+            if (val == 1)
+            {
+                return cnt+1;
+            }
+        }
+        return cnt;
     }
 };
