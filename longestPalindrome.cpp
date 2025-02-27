@@ -10,20 +10,12 @@ public:
         }
         for(auto [key,val]: count)
         {
-            while(val > 2)
+            while(val >= 2)
             {
-                cnt++;
+                cnt += 2;
                 val -= 2;
-                if(val == 0)
-                {
-                    count.erase(key);
-                }
             }
         }
-        if(count.size() == 0)
-        {
-            return cnt;
-        }
-        return cnt;
+        return cnt+1;
     }
 };
