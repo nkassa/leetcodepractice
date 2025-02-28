@@ -10,12 +10,12 @@ public:
         }
         for(auto [key,val]: count)
         {
-            while(val > 1)
+            while(count[key] > 1)
             {
                 cnt += 2;
-                val -= 2;
+                count[key] -= 2;
             }
-            if(val == 0)
+            if(count[key] == 0)
             {
                 count.erase(key);
             }
