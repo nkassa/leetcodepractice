@@ -8,19 +8,16 @@ public:
         {
             count[c]++;
         }
-        for(char c: s)
+        for(auto [key,val]: count)
         {
-            if(count.find(c) != count.end())
+            while(val > 1)
             {
-                while(count[c] >= 2)
-                {
-                    cnt += 2;
-                    count[c] -= 2;
-                }
-                if(count[c] == 0)
-                {
-                    count.erase(c);
-                }
+                cnt += 2;
+                val -= 2;
+            }
+            if(val == 0)
+            {
+                count.erase(key);
             }
         }
         if(count.size() == 0)
