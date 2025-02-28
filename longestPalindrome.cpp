@@ -8,21 +8,25 @@ public:
         {
             count[c]++;
         }
-        for(auto [key,val]: count)
+        for(char c: s)
         {
-            while(val >= 2)
+            if(count.find(c) != count.end())
             {
-                cnt += 2;
-                val -= 2;
+                while(count[c] > 1)
+                {
+                    cnt += 2;
+                    count[c] -= 2;
+                }
+                if(count[c] < 1)
+                {
+                    count.erase(c);
+                }
             }
         }
-        for(auto [key,val]: count)
+        if(count.size() == 0)
         {
-            if (val == 1)
-            {
-                return cnt+1;
-            }
+            return cnt;
         }
-        return cnt;
+        return cnt+1;
     }
 };
