@@ -12,7 +12,7 @@ public:
         {
             if(count.find(c) != count.end())
             {
-                while(count[c] > 1)
+                while(count[c] >= 2)
                 {
                     cnt += 2;
                     count[c] -= 2;
