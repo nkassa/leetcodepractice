@@ -3,6 +3,7 @@ public:
     int longestPalindrome(string s) 
     {
         int cnt = 0;
+        bool odd = false;
         unordered_map<char,int> count;
         for(char c: s)
         {
@@ -10,20 +11,20 @@ public:
         }
         for(auto [key,val]: count)
         {
-            while(count[key] > 1)
+            if(val % 2 == 0)
             {
-                cnt += 2;
-                count[key] -= 2;
+                cnt += val;
             }
-            if(count[key] == 0)
+            else
             {
-                count.erase(key);
+                cnt += val - 1;
+                odd = true;
             }
         }
-        if(count.size() == 0)
+        if(odd == true)
         {
-            return cnt;
+            return cnt+1;
         }
-        return cnt+1;
+        return cnt;
     }
 };
