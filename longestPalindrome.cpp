@@ -17,7 +17,7 @@ public:
                     cnt += 2;
                     count[c] -= 2;
                 }
-                if(count[c] < 1)
+                if(count[c] == 0)
                 {
                     count.erase(c);
                 }
