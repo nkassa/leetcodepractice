@@ -14,7 +14,7 @@ public:
     {
         if(head == nullptr || head->next == nullptr)
         {
-            return nullptr;
+            return head;
         }
         ListNode* slow = head;
         ListNode* fast = head;
