@@ -28,6 +28,7 @@ public:
             return;
         }
         ans = max(ans, depth);
+        depth++;
         dfs(root->left, depth);
         dfs(root->right, depth);
     }
