@@ -27,10 +27,7 @@ public:
         {
             return;
         }
-        if(!root->left && !root->right)
-        {
-            ans = max(ans, depth);
-        }
+        ans = max(ans, depth);
         dfs(root->left, depth++);
         dfs(root->right, depth++);
     }
