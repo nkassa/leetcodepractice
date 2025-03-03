@@ -11,24 +11,33 @@
  */
 class Solution {
 public:
-    int ans = 0;
     int maxDepth(TreeNode* root) 
     {
         if(root == nullptr)
         {
             return 0;
         }
-        dfs(root, 1);
-        return ans;
-    }
-    void dfs(TreeNode* root, int depth)
-    {
-        if(root == nullptr)
+        queue<TreeNode*> queue;
+        queue.push(root);
+        int cnt = 0;
+        while(!queue.empty())
         {
-            return;
+            cnt++;
+            int size = queue.size();
+            for(int i = 0; i < size; i++)
+            {
+                TreeNode* node = queue.front();
+                queue.pop();
+                if(node->left)
+                {
+                    queue.push(node->left);
+                }
+                if(node->right)
+                {
+                    queue.push(node->right);
+                }
+            }
         }
-        ans = max(ans, depth);
-        dfs(root->left, depth+1);
-        dfs(root->right, depth+1);
+        return cnt;
     }
 };
