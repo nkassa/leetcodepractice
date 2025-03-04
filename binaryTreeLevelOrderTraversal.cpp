@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) 
+    vector<vector<int>> levelOrder(TreeNode* root)
     {
-        vector<vector<int>> ans = {};
         if(root == nullptr)
         {
-            return ans;
+            return {};
         }
+        vector<vector<int>> ans;
         queue<TreeNode*> queue;
         queue.push(root);
         while(!queue.empty())
@@ -32,11 +32,11 @@ public:
                 if(node->left)
                 {
                     queue.push(node->left);
-                } 
+                }
                 if(node->right)
                 {
                     queue.push(node->right);
-                } 
+                }
             }
             ans.push_back(list);
         }
