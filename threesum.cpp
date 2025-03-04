@@ -30,7 +30,7 @@ public:
         }
         for(auto key: seen)
         {
-            ans.push_back({key[0], key[1], key[2]});
+            ans.push_back(key);
         }
         return ans;
     }
