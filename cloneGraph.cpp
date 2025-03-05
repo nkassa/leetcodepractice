@@ -23,30 +23,35 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) 
     {
-        unordered_map<Node*, Node*> count;
+        unordered_map<Node*,Node*> count;
         if(node == nullptr)
         {
             return nullptr;
         }
-        return dfs(node, count);
-    }
-    Node* dfs(Node* node, unordered_map<Node*,Node*>& count)
-    {
-        vector<Node*> neighbor;
+        queue<Node*> queue;
+        queue.push(node);
         Node* clone = new Node(node->val);
         count[node] = clone;
-        for(Node* newNode: node->neighbors)
+
+        while(!queue.empty())
         {
-            if(count.find(newNode) != count.end())
+
+            Node* node = queue.front();
+            queue.pop();
+            for(Node* newNode: node->neighbors)
             {
-                neighbor.push_back(count[newNode]);
-            }
-            else
-            {
-                neighbor.push_back(dfs(newNode, count));
+                if(count.find(newNode) == count.end())
+                {
+                    Node* clone = new Node(newNode->val);
+                    count[newNode] = clone;
+                    queue.push(newNode);
+                }
+                else
+                {
+                    count[node]->neighbors.push_back(count[newNode]);
+                }
             }
         }
-        clone->neighbors = neighbor;
         return clone;
     }
 };
