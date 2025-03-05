@@ -23,19 +23,17 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) 
     {
-        unordered_map<Node*,Node*> count;
         if(node == nullptr)
         {
             return nullptr;
         }
-        queue<Node*> queue;
-        queue.push(node);
+        unordered_map<Node*,Node*> count;
         Node* clone = new Node(node->val);
         count[node] = clone;
-
+        queue<Node*> queue;
+        queue.push(node);
         while(!queue.empty())
         {
-
             Node* node = queue.front();
             queue.pop();
 
@@ -43,8 +41,8 @@ public:
             {
                 if(count.find(newNode) == count.end())
                 {
-                    count[newNode] = new Node(newNode->val);
                     queue.push(newNode);
+                    count[newNode] = new Node(newNode->val);
                 }
                 count[node]->neighbors.push_back(count[newNode]);
             }
