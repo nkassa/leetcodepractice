@@ -38,18 +38,15 @@ public:
 
             Node* node = queue.front();
             queue.pop();
+
             for(Node* newNode: node->neighbors)
             {
                 if(count.find(newNode) == count.end())
                 {
-                    Node* clone = new Node(newNode->val);
-                    count[newNode] = clone;
+                    count[newNode] = new Node(newNode->val);
                     queue.push(newNode);
                 }
-                else
-                {
-                    count[node]->neighbors.push_back(count[newNode]);
-                }
+                count[node]->neighbors.push_back(count[newNode]);
             }
         }
         return clone;
