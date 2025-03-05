@@ -2,7 +2,11 @@ class Solution {
 public:
     int evalRPN(vector<string>& tokens) 
     {
-        int ans = 0;
+        if(tokens.size() == 0)
+        {
+            return 0;
+        }
+        int ans = stoi(tokens[0]);
         stack<int> stack;
         for(string s: tokens)
         {
@@ -17,8 +21,8 @@ public:
                 stack.pop();
                 int sec = stack.top();
                 stack.pop();
-                ans += first + sec;
-                cout << "ans " << ans << endl;
+                ans = first + sec;
+                stack.push(ans);
             }
             else if(s == "-" && stack.size() > 1)
             {
@@ -26,7 +30,8 @@ public:
                 stack.pop();
                 int sec = stack.top();
                 stack.pop();
-                ans += first - sec;
+                ans = sec - first;
+                stack.push(ans);
             }
             else if(s == "*" && stack.size() > 1)
             {
@@ -34,8 +39,9 @@ public:
                 stack.pop();
                 int sec = stack.top();
                 stack.pop();
-                ans += first * sec;
-                cout << "ans " << ans << endl;
+                cout << first << " " << sec << endl;
+                ans = first * sec;
+                stack.push(ans);
             }
             else if(s == "/" && stack.size() > 1)
             {
@@ -43,9 +49,12 @@ public:
                 stack.pop();
                 int sec = stack.top();
                 stack.pop();
-                ans += first / sec;
+                cout << first << " " << sec << endl;
+                ans = sec / first;
+                stack.push(ans);
+                cout << "stack " << stack.top() << endl;
             }
-            stack.push(ans);
+            cout << "ans " << ans << endl;
         }
         return ans;
     }
