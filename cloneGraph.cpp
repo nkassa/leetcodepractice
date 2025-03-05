@@ -28,11 +28,6 @@ public:
         {
             return nullptr;
         }
-        if(node->neighbors.size() == 0)
-        {
-            Node* clone = new Node(node->val);
-            return clone;
-        }
         return dfs(node, count);
     }
     Node* dfs(Node* node, unordered_map<Node*,Node*>& count)
