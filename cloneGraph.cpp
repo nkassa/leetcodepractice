@@ -40,7 +40,7 @@ public:
         vector<Node*> neighbor;
         Node* clone = new Node(node->val);
         count[node] = clone;
-        for(Node newNode: node->neighbors)
+        for(Node* newNode: node->neighbors)
         {
             if(count[newNode] != count.end())
             {
@@ -48,8 +48,10 @@ public:
             }
             else
             {
-                neighbor.push_back()
+                neighbor.push_back(dfs(newNode, count));
             }
         }
+        clone->neighbors = neighbour;
+        return clone;
     }
 };
