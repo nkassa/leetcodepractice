@@ -21,7 +21,7 @@ public:
         dfs(root, list);
         for(int i = 1; i < list.size(); i++)
         {
-            if(list[i-1] > list[i])
+            if(list[i-1] >= list[i])
             {
                 return false;
             }
@@ -39,4 +39,3 @@ public:
         dfs(root->right, list);
     }
 };
-//work
