@@ -11,31 +11,28 @@
  */
 class Solution {
 public:
+    bool ans = true;
     bool isValidBST(TreeNode* root) 
     {
-        vector<int> list;
         if(root == nullptr)
         {
             return true;
         }
-        dfs(root, list);
-        for(int i = 1; i < list.size(); i++)
-        {
-            if(list[i-1] >= list[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        dfs(root, LONG_MIN, LONG_MAX);
+        return ans;
     }
-    void dfs(TreeNode* root, vector<int>& list)
+    void dfs(TreeNode* root, int min, int max)
     {
         if(root == nullptr)
         {
             return;
         }
-        dfs(root->left, list);
-        list.push_back(root->val);
-        dfs(root->right, list);
+        if(root->val <= min || root->val >= max)
+        {
+            ans = false;
+            return;
+        }
+        dfs(root->left, min, root->val);
+        dfs(root->right, root->val, max);
     }
 };
