@@ -11,12 +11,12 @@ public:
         while(left < nums.size())
         {
             prefix[left] = prefix[left-1] * nums[left];
-            suffix[right] = suffix[right+1] * nums[right]);
+            suffix[right] = suffix[right+1] * nums[right];
             left++;
             right--;
         }
         vector<int> ans(nums.size());
-        ans[0] = suffix[nums.size];
+        ans[0] = suffix[1];
         ans[nums.size()-1] = prefix[nums.size() - 2];
         for(int i = 1; i < nums.size()-1; i++)
         {
