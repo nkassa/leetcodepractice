@@ -30,17 +30,17 @@ public:
         {
             int nextRow = row + direction[0];
             int nextCol = col + direction[1];
-            if(valid(nextRow, nextCol, grid) && seen[row][col] == false)
+            if(valid(nextRow, nextCol, grid) && seen[nextRow][nextCol] == false)
             {
-                seen[row][col] = true;
+                seen[nextRow][nextCol] = true;
                 dfs(nextRow,nextCol, grid);
             }
         }
     }
 
-    void valid(int row, int col, vector<vector<char>>& grid)
+    bool valid(int row, int col, vector<vector<char>>& grid)
     {
-        return 0 <= row && row < m && 0 <= col && col < n && grid[row][col] == 1;
+        return 0 <= row && row < m && 0 <= col && col < n && grid[row][col] == '1';
     }
 
 };
