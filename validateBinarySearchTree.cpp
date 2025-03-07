@@ -21,7 +21,7 @@ public:
         dfs(root, LONG_MIN, LONG_MAX);
         return ans;
     }
-    void dfs(TreeNode* root, int min, int max)
+    void dfs(TreeNode* root, long int min, long int max)
     {
         if(root == nullptr)
         {
