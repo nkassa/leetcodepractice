@@ -11,13 +11,27 @@ public:
             {
                 return mid;
             }
-            else if(nums[left] < target && nums[mid] > target)
+            else if(nums[left] <= nums[mid])
             {
-                right = mid-1;
+                if(nums[mid] > target && target >= nums[left])
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
             }
-            else
+            else if(nums[left] > nums[mid])
             {
-                left = mid+1;
+                if(nums[mid] < target  && target <= nums[right])
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
             }
         }
         return -1;
