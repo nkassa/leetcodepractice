@@ -6,6 +6,7 @@ public:
     vector<vector<int>> directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
     vector<vector<bool>> seen;
     vector<vector<int>> grid;
+    int one = 0;
     int orangesRotting(vector<vector<int>>& grid) 
     {
         this->grid = grid;
@@ -17,10 +18,14 @@ public:
         {
             for(int col = 0; col < n; col++)
             {
-                if(grid[row][col] == 2 && !seen[row][col])
+                if(grid[row][col] == 2)
                 {
                     queue.push({row,col,0});
                     seen[row][col] = true;
+                }
+                else if(grid[row][col]== 1)
+                {
+                    one++;
                 }
             }
         }
@@ -39,21 +44,16 @@ public:
                 if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
                 {
                     seen[nextRow][nextCol] = true;
+                    one--;
                     queue.push({nextRow, nextCol, cnt});
                 }
             }
         }
-        for(int row = 0; row < m; row++)
+        if(one == 0)
         {
-            for(int col = 0; col < n; col++)
-            {
-                if(grid[row][col] == 1 && !seen[row][col])
-                {
-                    return -1;
-                }
-            }
+            return ans;
         }
-        return ans;
+        return -1;
     }
     bool valid(int row, int col)
     {
