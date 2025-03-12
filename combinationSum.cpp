@@ -4,28 +4,28 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
     {
         n = candidates.size();
+        sort(candidates.begin(), candidates.end());
         vector<vector<int>> ans;
         vector<int> curr = {};
-        backtrack(ans, curr, candidates, target, 0, 0);
+        backtrack(ans, curr, candidates, target, 0);
         return ans;
     }
-    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int> candidates, int target, int soFar, int x)
+    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& candidates, int target, int start)
     {
-        if(soFar == target)
+        if(start == n)
         {
-            ans.push_back(curr);
+            if(target == 0)
+            {
+                ans.push_back(curr);
+            }
             return;
         } 
-        for(int i = x; i < n; i++)
+        if(target >= candidates[start])
         {
-            if(soFar < target)
-            {
-                curr.push_back(candidates[i]);
-                soFar += candidates[i];
-                backtrack(ans, curr, candidates, target, soFar, i);
-                curr.pop_back();
-                soFar -= candidates[i];
-            }
+            curr.push_back(candidates[start]);
+            backtrack(ans, curr, candidates, target-candidates[start], start);
+            curr.pop_back();
         }
+        backtrack(ans, curr, candidates, target, start + 1);
     }
 };
