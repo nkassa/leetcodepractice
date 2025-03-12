@@ -9,7 +9,7 @@ public:
         backtrack(ans, curr, nums, seen);
         return ans;
     }
-    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& nums, unordered_set<int> seen)
+    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& nums, unordered_set<int>& seen)
     {
         if(curr.size() == nums.size())
         {
