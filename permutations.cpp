@@ -3,7 +3,6 @@ public:
     int n;
     vector<vector<int>> permute(vector<int>& nums) 
     {
-        n = nums.size();
         vector<vector<int>> ans;
         vector<int> curr = {};
         unordered_set<int> seen;
@@ -12,12 +11,12 @@ public:
     }
     void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& nums, unordered_set<int> seen)
     {
-        if(curr.size() == n)
+        if(curr.size() == nums.size())
         {
             ans.push_back(curr);
             return;
         }
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < nums.size(); i++)
         {
             if(seen.find(nums[i]) == seen.end())
             {
