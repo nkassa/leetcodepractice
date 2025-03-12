@@ -1,15 +1,14 @@
 class Solution {
 public:
-    int n;
     vector<vector<int>> permute(vector<int>& nums) 
     {
         vector<vector<int>> ans;
         vector<int> curr = {};
-        unordered_set<int> seen;
+        vector<bool> seen(nums.size(), false);
         backtrack(ans, curr, nums, seen);
         return ans;
     }
-    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& nums, unordered_set<int>& seen)
+    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int>& nums, vector<bool>& seen)
     {
         if(curr.size() == nums.size())
         {
@@ -18,13 +17,13 @@ public:
         }
         for(int i = 0; i < nums.size(); i++)
         {
-            if(seen.find(nums[i]) == seen.end())
+            if(seen[i] == false)
             {
                 curr.push_back(nums[i]);
-                seen.insert(nums[i]);
+                seen[i] = true;
                 backtrack(ans, curr, nums, seen);
                 curr.pop_back();
-                seen.erase(nums[i]);
+                seen[i] = false;
             }
         }
     }
