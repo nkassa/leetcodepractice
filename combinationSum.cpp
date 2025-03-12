@@ -9,7 +9,7 @@ public:
         backtrack(ans, curr, candidates, target, 0, 0);
         return ans;
     }
-    void backtrack(vector<vector<int>>& ans, vector<int> curr, vector<int> candidates, int target, int soFar, int x)
+    void backtrack(vector<vector<int>>& ans, vector<int>& curr, vector<int> candidates, int target, int soFar, int x)
     {
         if(soFar == target)
         {
@@ -22,7 +22,7 @@ public:
             {
                 curr.push_back(candidates[i]);
                 soFar += candidates[i];
-                backtrack(ans, curr, candidates, target, soFar, x++);
+                backtrack(ans, curr, candidates, target, soFar, i);
                 curr.pop_back();
                 soFar -= candidates[i];
             }
