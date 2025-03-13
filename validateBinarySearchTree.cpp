@@ -21,18 +21,18 @@ public:
         dfs(root, LONG_MIN, LONG_MAX);
         return ans;
     }
-    void dfs(TreeNode* root, long int min, long int max)
+    void dfs(TreeNode* root, long int mini, long int maxi)
     {
         if(root == nullptr)
         {
             return;
         }
-        if(root->val <= min || root->val >= max)
+        if(root->val <= mini || root->val >= maxi)
         {
             ans = false;
             return;
         }
-        dfs(root->left, min, root->val);
-        dfs(root->right, root->val, max);
+        dfs(root->left, mini, root->val);
+        dfs(root->right, root->val, maxi);
     }
 };
