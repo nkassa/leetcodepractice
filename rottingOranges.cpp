@@ -25,7 +25,7 @@ public:
                 }
                 else if(grid[row][col]== 1)
                 {
-                    one++;
+                    one += 1;
                 }
             }
         }
