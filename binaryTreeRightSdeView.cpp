@@ -27,17 +27,17 @@ public:
             {
                 TreeNode* node = queue.front();
                 queue.pop();
-                if(i == size-1)
+                if(i == 0)
                 {
                     ans.push_back(node->val);
-                }
-                if(node->left)
-                {
-                    queue.push(node->left);
                 }
                 if(node->right)
                 {
                     queue.push(node->right);
+                }
+                if(node->left)
+                {
+                    queue.push(node->left);
                 }
             }
         }
