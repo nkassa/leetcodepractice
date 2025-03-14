@@ -10,7 +10,7 @@ public:
     
     string get(string key, int timestamp) 
     {
-        vector<pair<int, string>> numStr = store[key];
+        vector<pair<int, string>>& numStr = store[key];
         string ans;
         int left = 0;
         int right = numStr.size()-1;
