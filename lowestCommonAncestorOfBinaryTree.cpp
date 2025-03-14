@@ -11,12 +11,12 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
     {
-        if(root == nullptr)
+        if(root == nullptr || root == p || root == q)
         {
-            return nullptr;
+            return root;
         }
-        TreeNode* left = dfs(root->left, p, q);
-        TreeNode* right = dfs(root->left, p, q);
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
         if(left && right)
         {
             return root;
@@ -26,16 +26,5 @@ public:
             return left;
         }
         return right;
-    }
-    TreeNode* dfs(TreeNode* root, TreeNode* p, TreeNode* q)
-    {
-        if(root == nullptr)
-        {
-            return nullptr;
-        }
-        else if(root == p || root == q)
-        {
-            return root;
-        }
     }
 };
