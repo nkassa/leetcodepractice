@@ -10,16 +10,16 @@ public:
     
     string get(string key, int timestamp) 
     {
+        vector<pair<int, string>> numStr = store[key];
         string ans;
         int left = 0;
-        int right = pow(10,7);
-        sort(store[key].begin(), store[key].end());
+        int right = numStr.size()-1;
         while(left <= right)
         {
             int mid = left + ((right-left)/2);
-            if(store[key][mid].first <= timestamp)
+            if(numStr[mid].first <= timestamp)
             {
-                ans = store[key][mid].second;
+                ans = numStr[mid].second;
                 left = mid + 1;
             }
             else
