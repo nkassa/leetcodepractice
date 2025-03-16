@@ -6,6 +6,7 @@ public:
         int col = 0;
         int m = matrix.size();
         int n = matrix[0].size();
+        int size = m * n;
         vector<int> ans = {};
         while(row < m && col < n)
         {
