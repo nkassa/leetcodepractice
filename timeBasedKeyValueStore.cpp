@@ -26,7 +26,7 @@ public:
                 right = mid - 1;
             }
         }
-        return count[key]
+        return list[right].second;
     }
 };
 
