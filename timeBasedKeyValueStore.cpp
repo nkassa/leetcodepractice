@@ -1,11 +1,11 @@
 class TimeMap {
 public:
-    unorered_map<string, vector<pair<int,string>>> count;
+    unordered_map<string, vector<pair<int,string>>> count;
     TimeMap() {  
     }
     
     void set(string key, string value, int timestamp) {
-        count[key].push_back({timestanp, value}));
+        count[key].push_back({timestamp, value});
     }
     
     string get(string key, int timestamp) 
@@ -17,7 +17,7 @@ public:
         while(left <= right)
         {
             int mid = left + (right-left)/2;
-            if(list[mid].second <= timestamp)
+            if(list[mid].first <= timestamp)
             [
                 left = mid + 1;
             ]
