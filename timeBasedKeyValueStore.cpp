@@ -14,10 +14,14 @@ public:
         list = count[key];
         int left = 0; 
         int right = list.size()-1;
-        while(left < right)
+        while(left <= right)
         {
             int mid = left + ((right-left)/2);
-            if(list[mid].first <= timestamp)
+            if(list[mid].first == timestamp)
+            {
+                return list[mid].second;
+            }
+            else if(list[mid].first < timestamp)
             {
                 left = mid + 1;
             }
@@ -26,7 +30,11 @@ public:
                 right = mid - 1;
             }
         }
-        return list[left].second;
+        if(right >= 0)
+        {
+            return list[right].second;
+        }
+        return "";
     }
 };
 
