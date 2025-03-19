@@ -10,8 +10,7 @@ public:
     
     string get(string key, int timestamp) 
     {
-        vector<pair<int,string>> list;
-        list = count[key];
+        vector<pair<int,string>> list = count[key];
         int left = 0; 
         int right = list.size()-1;
         while(left <= right)
