@@ -10,17 +10,15 @@ public:
     
     string get(string key, int timestamp) 
     {
+        string ans = {};
         int left = 0; 
         int right = count[key].size()-1;
         while(left <= right)
         {
             int mid = left + ((right-left)/2);
-            if(count[key][mid].first == timestamp)
+            if(count[key][mid].first <= timestamp)
             {
-                return count[key][mid].second;
-            }
-            else if(count[key][mid].first < timestamp)
-            {
+                ans = count[key][mid].second;
                 left = mid + 1;
             }
             else
@@ -28,11 +26,7 @@ public:
                 right = mid - 1;
             }
         }
-        if(right >= 0)
-        {
-            return count[key][right].second;
-        }
-        return "";
+        return ans;
     }
 };
 
