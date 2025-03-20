@@ -10,17 +10,16 @@ public:
     
     string get(string key, int timestamp) 
     {
-        vector<pair<int,string>> list = count[key];
         int left = 0; 
-        int right = list.size()-1;
+        int right = count[key].size()-1;
         while(left <= right)
         {
             int mid = left + ((right-left)/2);
-            if(list[mid].first == timestamp)
+            if(count[key][mid].first == timestamp)
             {
-                return list[mid].second;
+                return count[key][mid].second;
             }
-            else if(list[mid].first < timestamp)
+            else if(count[key][mid].first < timestamp)
             {
                 left = mid + 1;
             }
@@ -31,7 +30,7 @@ public:
         }
         if(right >= 0)
         {
-            return list[right].second;
+            return count[key][right].second;
         }
         return "";
     }
