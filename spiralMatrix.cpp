@@ -20,12 +20,12 @@ public:
                 ans.push_back(matrix[right][i]);
             }
             right--;
-            for(int i = right; i >= 0; i--)
+            for(int i = right; i >= left; i--)
             {
                 ans.push_back(matrix[i][bottom]);
             }
             bottom--;
-            for(int i = bottom; i >= 0; i--)
+            for(int i = bottom; i >= top; i--)
             {
                 ans.push_back(matrix[left][i]);
             }
