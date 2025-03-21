@@ -3,32 +3,32 @@ public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) 
     {
         int top = 0;
+        int bottom = matrix.size()-1;
         int left = 0;
-        int bottom = matrix.size();
-        int right = matrix[0].size();
-        vector<int> ans = {};
-        while(top < bottom && left < right)
+        int right = matrix[0].size()-1;
+        vector<int> ans;
+        int size = (bottom+1)*(right+1);
+        while(ans.size() < size)
         {
-            for(int i = left; i < right; i++)
+            for(int i = left; i <= right; i++)
             {
-                ans.push_back(matrix[top][i]);
+                ans.push_back(matrix[i][top]);
             }
             top++;
-            for(int i = top; i < bottom; i++)
+            for(int i = top; i <= bottom; i++)
             {
-                ans.push_back(matrix[i][right-1]);
+                ans.push_back(matrix[right][i]);
             }
             right--;
-            for(int i = right-1; i >= left; i--)
+            for(int i = right; i >= 0; i--)
             {
-                ans.push_back(matrix[bottom-1][i]);
+                ans.push_back(matrix[i][bottom]);
             }
             bottom--;
-            for(int i = bottom-1; i >= top; i--)
+            for(int i = bottom; i >= 0; i--)
             {
-                ans.push_back(matrix[i][left]);
+                ans.push_back(matrix[left][i]);
             }
-            left++;
         }
         return ans;
     }
