@@ -16,7 +16,7 @@ public:
             {
                 list.insert(s[right]);
             }
-            else
+            else if(count.find(s[right]) == count.end() || right-left > list.size())
             {
                 left = right;
             }
