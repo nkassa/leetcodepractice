@@ -24,6 +24,7 @@ public:
             {
                 ans.push_back(left);
                 left = right;
+                list.clear();
             }
         }
         return ans;
