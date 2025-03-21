@@ -12,17 +12,17 @@ public:
         vector<int> ans;
         for(int right = 0; right < s.size(); right++)
         {
-            if(list.size() == p.size())
-            {
-                ans.push_back(left);
-                left = right;
-            }
             if(count.find(s[right]) != count.end())
             {
                 list.insert(s[right]);
             }
             else
             {
+                left = right;
+            }
+            if(list.size() == p.size())
+            {
+                ans.push_back(left);
                 left = right;
             }
         }
