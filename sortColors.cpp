@@ -2,40 +2,20 @@ class Solution {
 public:
     void sortColors(vector<int>& nums) 
     {
-        int zero = 0;
-        int one = 0;
-        int two = 0;
+        unordered_map<int,int> count;
         for(int num: nums)
         {
-            if(num == 0)
-            {
-                zero++;
-            }
-            else if(num == 2)
-            {
-                two++;
-            }
-            else
-            {
-                one++;
-            }
+            count[num]++;
         }
-        for(int i = 0; i < nums.size(); i++)
+        int idx = 0;
+        for(int i = 0; i < 3; i++)
         {
-            if(zero > 0)
+            int size = count[i];
+            while(size > 0)
             {
-                nums[i] = 0;
-                zero--;
-            }
-            else if(one > 0)
-            {
-                nums[i] = 1;
-                one--;
-            }
-            else if(two > 0)
-            {
-                nums[i] = 2;
-                two--;
+                nums[idx] = i;
+                idx++;
+                size--;
             }
         }
     }
