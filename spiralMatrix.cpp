@@ -12,23 +12,24 @@ public:
         {
             for(int i = left; i <= right; i++)
             {
-                ans.push_back(matrix[i][top]);
+                ans.push_back(matrix[top][i]);
             }
             top++;
             for(int i = top; i <= bottom; i++)
             {
-                ans.push_back(matrix[right][i]);
+                ans.push_back(matrix[i][right]);
             }
             right--;
             for(int i = right; i >= left; i--)
             {
-                ans.push_back(matrix[i][bottom]);
+                ans.push_back(matrix[bottom][i]);
             }
             bottom--;
             for(int i = bottom; i >= top; i--)
             {
-                ans.push_back(matrix[left][i]);
+                ans.push_back(matrix[i][left]);
             }
+            left++;
         }
         return ans;
     }
