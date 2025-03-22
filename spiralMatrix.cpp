@@ -31,6 +31,10 @@ public:
             }
             left++;
         }
+        while(ans.size() > size)
+        {
+            ans.pop_back();
+        }
         return ans;
     }
 };
