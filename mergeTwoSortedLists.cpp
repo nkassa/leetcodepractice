@@ -21,7 +21,14 @@ public:
             return list1;
         }
         ListNode* ans;
-        if(li)
+        if(list1->val < list2->val)
+        {
+            ans = list1;
+        }
+        else
+        {
+            ans = list2;
+        }
         while(list1 != nullptr && list2 != nullptr)
     }
 };
