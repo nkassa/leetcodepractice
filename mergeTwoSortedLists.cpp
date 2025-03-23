@@ -14,6 +14,10 @@ public:
     {
         if(list1 == nullptr)
         {
+            return list2;
+        }
+        if(list2 == nullptr)
+        {
             return list1;
         }
         ListNode* ans;
