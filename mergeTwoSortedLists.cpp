@@ -28,15 +28,13 @@ public:
             }
             curr = curr->next;
         }
-        while(list1 != nullptr)
+        if(list1 != nullptr)
         {
-            curr = list1;
-            list1 = list1->next;
+            curr->next = list1;
         }
-        while(list2 != nullptr)
+        if(list2 != nullptr)
         {
-            curr = list2;
-            list2 = list2->next;
+            curr->next = list2;
         }
         return ans->next;
     }
