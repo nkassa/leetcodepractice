@@ -2,6 +2,7 @@ class Solution {
 public:
     int m;
     int n;
+    bool ans = true;
     vector<vector<int>> directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
     vector<vector<char>> board;
     bool exist(vector<vector<char>>& board, string word) 
@@ -27,7 +28,7 @@ public:
         for(auto start: starts)
         {
             seen[start[0]][start[1]] = true;
-            bool ans = backtrack(start, word, seen, curr, 0);
+            backtrack(start, word, seen, curr, 0,board);
             if(ans == true)
             {
                 return true;
@@ -35,15 +36,16 @@ public:
         }
         return false;
     }
-    bool backtrack(vector<int> start, string& word, vector<vector<bool>> seen, string curr, int idx)
+    void backtrack(vector<int> start, string& word, vector<vector<bool>> seen, string curr, int idx, vector<vector<char>>& board)
     {
         if(curr == word)
         {
-            return true;
+            ans = true;
+            return;
         }
-        if(curr.back() != word[idx])
+        if(curr.size() > word.size() || curr.back() != word[idx])
         {
-            return false;
+            ans = false;
         }
         for(vector<int> direction: directions)
         {
@@ -52,13 +54,13 @@ public:
             if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
             {
                 seen[nextRow][nextCol] = true;
-                curr += word[idx];
-                backtrack({nextRow, nextCol}, word, seen, curr, idx += 1);
+                curr += board[nextRow][nextCol];
+                backtrack({nextRow, nextCol}, word, seen, curr, idx += 1, board);
                 curr.pop_back();
                 seen[nextRow][nextCol] = false;
             }
         }
-        return false;
+        ans = false;
     }
     bool valid(int row, int col)
     {
