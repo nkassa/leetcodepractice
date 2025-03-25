@@ -38,29 +38,27 @@ public:
     }
     void backtrack(int i, int j, string& word, vector<vector<bool>>& seen, string& curr, int idx, vector<vector<char>>& board)
     {
+        if(ans == true)
+        {
+            return;
+        }
         curr += board[i][j];
         seen[i][j] = true;
-
         cout << idx << " " << curr << endl;
-
         if(idx > word.size()-1 || curr.back() != word[idx])
         {
-            curr.pop_back();
-            seen[i][j] = false;
             return;
         }
         else if(idx == word.size()-1)
         {
-            cout << idx << " here " << curr << endl;
             ans = true;
             return;
         }
-
         for(vector<int> direction: directions)
         {
             int nextRow = i + direction[0];
             int nextCol = j + direction[1];
-            if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
+            if(valid(nextRow, nextCol, word, idx+1) && !seen[nextRow][nextCol])
             {
                 backtrack(nextRow, nextCol, word, seen, curr, idx + 1, board);
             }
@@ -68,8 +66,8 @@ public:
         curr.pop_back();
         seen[i][j] = false;
     }
-    bool valid(int row, int col)
+    bool valid(int row, int col, string& word, int idx)
     {
-        return 0 <= row && row < m && 0 <= col && col < n;
+        return 0 <= row && row < m && 0 <= col && col < n && board[row][col] == word[idx];
     }
 };
