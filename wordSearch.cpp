@@ -55,11 +55,11 @@ public:
             int nextCol = j + direction[1];
             if(valid(nextRow, nextCol, word, idx+1) && !seen[nextRow][nextCol])
             {
-                curr += board[i][j];
-                seen[i][j] = true;
+                curr += board[nextRow][nextCol];
+                seen[nextRow][nextCol] = true;
                 backtrack(nextRow, nextCol, word, seen, curr, idx + 1, board);
                 curr.pop_back();
-                seen[i][j] = false;
+                seen[nextRow][nextCol] = false;
             }
         }
         return;
