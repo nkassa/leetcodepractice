@@ -43,7 +43,7 @@ public:
         {
             return;
         }
-        if(curr.back == word[idx])
+        else if(curr.back() == word[idx] && curr.size() == word.size())
         {
             ans = true;
             cout << idx << " " << curr << endl;
