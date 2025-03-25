@@ -57,7 +57,7 @@ public:
             {
                 seen[nextRow][nextCol] = true;
                 curr += board[nextRow][nextCol];
-                backtrack({nextRow, nextCol}, word, seen, curr, idx += 1, board);
+                backtrack({nextRow, nextCol}, word, seen, curr, idx + 1, board);
                 curr.pop_back();
                 seen[nextRow][nextCol] = false;
             }
