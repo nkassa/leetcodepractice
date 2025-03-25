@@ -45,6 +45,8 @@ public:
 
         if(idx > word.size()-1 || curr.back() != word[idx])
         {
+            curr.pop_back();
+            seen[i][j] = false;
             return;
         }
         else if(idx == word.size()-1)
