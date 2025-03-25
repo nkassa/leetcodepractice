@@ -41,6 +41,7 @@ public:
         if(curr == word)
         {
             ans = true;
+            cout << idx << " " << curr << endl;
             return;
         }
         cout << idx << " " << curr << endl;
