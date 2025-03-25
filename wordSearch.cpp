@@ -38,15 +38,15 @@ public:
     }
     void backtrack(vector<int> start, string& word, vector<vector<bool>> seen, string curr, int idx, vector<vector<char>>& board)
     {
-        if(curr == word)
-        {
-            ans = true;
-            cout << idx << " " << curr << endl;
-            return;
-        }
         cout << idx << " " << curr << endl;
         if(curr.size() > word.size() || curr.back() != word[idx])
         {
+            return;
+        }
+        if(curr.back == word[idx])
+        {
+            ans = true;
+            cout << idx << " " << curr << endl;
             return;
         }
         for(vector<int> direction: directions)
