@@ -2,7 +2,7 @@ class Solution {
 public:
     int m;
     int n;
-    bool ans = true;
+    bool ans = false;
     vector<vector<int>> directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
     vector<vector<char>> board;
     bool exist(vector<vector<char>>& board, string word) 
@@ -43,9 +43,10 @@ public:
             ans = true;
             return;
         }
+        cout << idx << " " << curr << endl;
         if(curr.size() > word.size() || curr.back() != word[idx])
         {
-            ans = false;
+            return;
         }
         for(vector<int> direction: directions)
         {
@@ -60,7 +61,7 @@ public:
                 seen[nextRow][nextCol] = false;
             }
         }
-        ans = false;
+        return;
     }
     bool valid(int row, int col)
     {
