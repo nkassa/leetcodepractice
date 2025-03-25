@@ -36,7 +36,7 @@ public:
         }
         return ans;
     }
-    void backtrack(int i, int j, string& word, vector<vector<bool>>& seen, string curr, int idx, vector<vector<char>>& board)
+    void backtrack(int i, int j, string& word, vector<vector<bool>>& seen, string& curr, int idx, vector<vector<char>>& board)
     {
         curr += board[i][j];
         seen[i][j] = true;
@@ -47,13 +47,13 @@ public:
         {
             return;
         }
-
         else if(idx == word.size()-1)
         {
+            cout << idx << " here " << curr << endl;
             ans = true;
             return;
         }
-        
+
         for(vector<int> direction: directions)
         {
             int nextRow = i + direction[0];
