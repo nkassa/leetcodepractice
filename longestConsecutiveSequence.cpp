@@ -13,10 +13,9 @@ public:
                 continue;
             }
             longest = 1;
-            while(seen.find(num+1) != seen.end())
+            while(seen.find(num+longest) != seen.end())
             {
                 longest++;
-                num++;
             }
             ans = max(ans, longest);
             longest = 0;
