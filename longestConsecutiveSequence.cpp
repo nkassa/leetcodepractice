@@ -2,11 +2,6 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) 
     {
-        if(nums.size() == 0)
-        {
-            return 0;
-        }
-
         int longest = 0;
         int ans = 0;
         unordered_set<int> seen(nums.begin(), nums.end());
