@@ -4,7 +4,7 @@ public:
     {
         int start = 0;
         int end = 0;
-        int ans= 0;
+        int ans= 1;
         unordered_set<int> seen(nums.begin(), nums.end());
         for(int num: nums)
         {
@@ -18,7 +18,7 @@ public:
                 end = num + 1;
                 num++;
             }
-            ans = max(ans, start-end);
+            ans = max(ans, end-start+1);
         }
         return ans;
     }
