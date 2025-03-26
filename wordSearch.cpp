@@ -26,53 +26,46 @@ public:
             {
                 if(word[0] == board[i][j])
                 {
-                    curr += board[i][j];
                     seen[i][j] = true;
-                    backtrack(i, j, word, seen, curr, 0, board);
+                    backtrack(0, word, seen, board, i, j);
                     if(ans == true)
                     {
                         return true;
                     }
-                    curr.pop_back();
                     seen[i][j] = false;
                 }
             }
         }
-        return ans;
+        return false;
     }
-    void backtrack(int i, int j, string& word, vector<vector<bool>>& seen, string& curr, int idx, vector<vector<char>>& board)
+    void backtrack( int idx, string& word, vector<vector<bool>>& seen,  vector<vector<char>>& board, int i, int j)
     {
-        if(curr.back() != word[idx])
-        {
-            return;
-        }
-        if(curr.size() == word.size())
+        if(idx == word.size()-1)
         {
             ans = true; 
             return;
         }
-
         for(vector<int> direction: directions)
         {
             if(ans == true)
             {
                 break;
             }
-            int nextRow = i + direction[0];
-            int nextCol = j + direction[1];
-            if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
+            if(board[i][j] == word[idx])
             {
-                curr += board[nextRow][nextCol];
-                seen[nextRow][nextCol] = true;
-                //cout << idx << " " << curr << endl;
-                backtrack(nextRow, nextCol, word, seen, curr, idx + 1, board);
-                curr.pop_back();
-                seen[nextRow][nextCol] = false;
+                int nextRow = i + direction[0];
+                int nextCol = j + direction[1];
+                if(valid(nextRow, nextCol, word, idx + 1) && !seen[nextRow][nextCol])
+                {
+                    seen[nextRow][nextCol] = true;
+                    backtrack(idx + 1, word, seen, board, nextRow, nextCol);
+                    seen[nextRow][nextCol] = false;
+                }
             }
         }
     }
-    bool valid(int row, int col)
+    bool valid(int row, int col, string& word, int idx)
     {
-        return 0 <= row && row < m && 0 <= col && col < n;
+        return 0 <= row && row < m && 0 <= col && col < n && board[row][col] == word[idx];
     }
 };
