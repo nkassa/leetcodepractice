@@ -1,13 +1,23 @@
 class Solution {
 public:
-    unordered_map<int,int> count = {{0,0}, {1,1}};
     int fib(int n) 
     {
-        if(count.find(n) != count.end())
+        if(n == 1 || n == 0)
         {
-            return count[n];
+            return n;
         }
-        count[n] = fib(n-1) + fib(n-2);
-        return count[n];
+        vector<int> list(n+1, -1);
+        list[0] = 0;
+        list[1] = 1;
+        return dp(n, list);
+    }
+    int dp(int n, vector<int>& list)
+    {
+        if(list[n] >= 0)
+        {
+            return list[n];
+        }
+        list[n] = dp(n-1, list) + dp(n-2, list);
+        return list[n];
     }
 };
