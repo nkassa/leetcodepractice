@@ -13,7 +13,7 @@ public:
     {
         if(n == 0 || n == 1)
         {
-            list[n] = n;
+            return n;
         }
         if(list[n] >= 0)
         {
