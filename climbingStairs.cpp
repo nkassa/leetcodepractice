@@ -1,33 +1,11 @@
 class Solution {
 public:
-
-    vector<int> options = {1, 2};
-
+    vector<int> steps;
     int climbStairs(int n) 
     {
-        string curr = "";
-        unordered_set<string> seen;
-        backtrack(curr, seen, n, 0);
-        return seen.size();
-    }
-    void backtrack(string& curr, unordered_set<string>& seen, int& n, int total)
-    {
-        if(total == n)
-        {
-            seen.insert(curr);
-            return;
-        }
-        else if(total > n)
-        {
-            return;
-        }
-        for(int option: options)
-        {
-            curr += option;
-            total += option;
-            backtrack(curr, seen, n , total);
-            curr.pop_back();
-            total -= option;
-        }
+        steps = vector(n+1, -1);
+        steps[0] = 0;
+        step[1] = 1;
+        step[2] = 2;
     }
 };
