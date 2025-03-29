@@ -3,14 +3,13 @@ public:
     vector<int> steps;
     int climbStairs(int n) 
     {
-        if(n <= 2)
+        if(n <= 3)
         {
             return n;
         }
         steps = vector(n+1, -1);
-        steps[0] = 0;
+        steps[0] = 1;
         steps[1] = 1;
-        steps[2] = 2;
         return dp(n);
     }
     int dp(int idx)
