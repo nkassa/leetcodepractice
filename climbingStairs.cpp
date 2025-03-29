@@ -19,6 +19,7 @@ public:
         {
             return steps[idx];
         }
-        return steps[idx] = steps[idx-2] + steps[idx-1];
+        steps[idx] = dp(idx-2) + dp(idx-1);
+        return steps[idx];
     }
 };
