@@ -12,11 +12,14 @@ public:
     }
     int dp(int idx)
     {
-        if(list[idx] >= 0)
+        for(int i = 2; i <= cost.size(); i++)
         {
-            return list[idx];
+            if(list[i] >= 0)
+            {
+                return list[i];
+            }
+            list[i] = min(list[i-2]+ cost[i-2], list[i-1] + cost[i-1]);
         }
-        list[idx] = min(dp(idx-2) + cost[idx-2], dp(idx-1) + cost[idx-1]);
         return list[idx];
     }
 };
