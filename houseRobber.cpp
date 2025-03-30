@@ -9,6 +9,10 @@ public:
         {
             return nums[0];
         }
+        else if(nums.size() == 2)
+        {
+            return max(nums[0], nums[1]);
+        }
         list = vector(nums.size(), -1);
         list[0] = nums[0];
         list[1] = nums[1];
