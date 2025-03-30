@@ -12,7 +12,7 @@ public:
         list = vector(nums.size(), -1);
         list[0] = nums[0];
         list[1] = nums[1];
-        return dp(nums.size());
+        return dp(nums.size()-1);
     }
     int dp(int idx)
     {
