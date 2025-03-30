@@ -7,7 +7,7 @@ public:
         this->nums = nums;
         list = vector(nums.size(), -1);
         list[0] = 2;
-        return nums.size()-1 == dp(nums.size());
+        return nums.size()-1 == dp(nums.size()-1);
     }
     int dp(int idx)
     {
