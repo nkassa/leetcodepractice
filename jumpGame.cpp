@@ -6,8 +6,9 @@ public:
     {
         this->nums = nums;
         list = vector(nums.size(), -1);
-        list[0] = 2;
-        return nums.size()-1 == dp(nums.size()-1);
+        list[0] = nums[0];
+        int i = dp(nums.size()-1);
+        return i == nums.size()-1;
     }
     int dp(int idx)
     {
@@ -15,8 +16,7 @@ public:
         {
             return list[idx];
         }
-
-        list[idx] = max(list[idx-1], nums[idx] + idx);
+        list[idx] = max(dp(idx-1), nums[idx] + idx);
         return list[idx];
     }
 };
