@@ -8,7 +8,7 @@ public:
         this->questions = questions;
         n = questions.size();
         memo = vector(n, -1);
-        memo[n-1] = questions[n-1][1];
+        memo[n-1] = questions[n-1][0];
         return dp(0);
     }
 
@@ -22,7 +22,7 @@ public:
         {
             return memo[idx];
         }
-        memo[idx] = max(dp(idx+1), idx + questions[idx][1] + 1);
-        return meno[idx];
+        memo[idx] = max(dp(idx+1), questions[idx][0] + dp(idx + questions[idx][1] + 1));
+        return memo[idx];
     }
 };
