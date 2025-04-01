@@ -1,17 +1,31 @@
 class Solution {
 public:
+
+    vector<long> memo;
+    vector<vector<int>> questions;
+    long n;
+
     long long mostPoints(vector<vector<int>>& questions) 
     {
-        long n = questions.size();
-        vector<long> dp(n+1, -1);
-        dp[n-1] = questions[n-1][0];
-        dp[n] = 0;
+        this->questions = questions;
+        n = questions.size();
 
-        for(int i = n-1; i >= 0; i--)
+        memo = vector<long>(n+1, -1);
+        memo[n-1] = questions[n-1][0];
+        memo[n] = 0;
+
+        return dp(0);
+    }
+
+    long dp(int idx)
+    {
+        if(memo[idx] != -1)
         {
-            long j = i + questions[i][1] + 1;
-            dp[i] = max(dp[i+1] , questions[i][0] + dp[min(j, n)]);
+            return memo[idx];
         }
-        return dp[0];
+
+        long j = idx + questions[idx][1] + 1;
+        memo[idx] = max( dp(idx+1) , questions[idx][0] + dp(min(n, j)) );
+        return memo[idx];
     }
 };
