@@ -1,19 +1,29 @@
 class Solution {
 public:
+
+    vector<int> memo;
+    int n;
+
     int climbStairs(int n) 
     {
         if(n <= 2)
         {
             return n;
         }
-        int prev = 2;
-        int prevTwo = 1;
-        for(int i = 2; i < n; i++)
+
+        this->n = n;
+        memo = vector(n, -1);
+        memo[0] = 1;
+        memo[1] = 2;
+        return dp(n-1);
+    }
+    int dp(int idx)
+    {
+        if(memo[idx] != -1)
         {
-            int temp = prev;
-            prev = prev + prevTwo;
-            prevTwo = temp;
+            return memo[idx];
         }
-        return prev;
+        memo[idx] = dp(idx-1) + dp(idx-2);
+        return memo[idx];
     }
 };
