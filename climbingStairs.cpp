@@ -1,24 +1,19 @@
 class Solution {
 public:
-    vector<int> steps;
     int climbStairs(int n) 
     {
-        if(n <= 3)
+        if(n <= 2)
         {
             return n;
         }
-        steps = vector(n+1, -1);
-        steps[0] = 1;
-        steps[1] = 1;
-        return dp(n);
-    }
-    int dp(int idx)
-    {
-        if(steps[idx] >= 0)
+        int prev = 2;
+        int prevTwo = 1;
+        for(int i = 2; i < n; i++)
         {
-            return steps[idx];
+            int temp = prev;
+            prev = prev + prevTwo;
+            prevTwo = temp;
         }
-        steps[idx] = dp(idx-2) + dp(idx-1);
-        return steps[idx];
+        return prev;
     }
 };
