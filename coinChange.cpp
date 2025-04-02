@@ -32,9 +32,11 @@ public:
         {
             curr += coins[i];
             amount -= coins[i];
-            backtrack(curr, amount, coins, size+1);
+            size += 1;
+            backtrack(curr, amount, coins, size);
             curr -= coins[i];
             amount += coins[i];
+            size -= 1;
         }
     }
 };
