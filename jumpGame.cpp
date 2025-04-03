@@ -18,6 +18,6 @@ public:
             }
             memo[i] = max(memo[i-1], i + nums[i]);
         }
-        return memo[n-2] > n-1;
+        return memo[n-2] >= n-1;
     }
 };
