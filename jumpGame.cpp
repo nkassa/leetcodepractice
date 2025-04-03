@@ -15,24 +15,24 @@ public:
         }
         memo = vector(n, -1);
         memo[0] = nums[0];
-        bool result = dp(n-2);
-        if(ans)
+        int result = dp(n-2);
+        if(ans == false)
         {
-            return result;
+            return false;
         }
-        return false;
+        return result >= n-1;
     }
-    bool dp(int idx)
+    int dp(int idx)
     {
         if(memo[idx] != -1)
         {
             return memo[idx];
         }
-        memo[idx] = max(memo[idx-1], idx + nums[idx]);
+        memo[idx] = max(dp(idx-1), idx + nums[idx]);
         if(memo[idx-1] < idx)
         {
             ans = false;
         }
-        return memo[n-2] >= n-1;
+        return memo[idx];
     }
 };
