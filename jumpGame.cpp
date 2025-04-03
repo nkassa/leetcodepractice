@@ -1,22 +1,37 @@
 class Solution {
 public:
+
+    vector<int> memo;
+    int n;
+    bool ans = true;
+    vector<int> nums;
     bool canJump(vector<int>& nums) 
     {
-        int n = nums.size();
-        vector<int> memo(n, -1);
-        memo[0] = nums[0];
-
+        this->nums = nums;
+        n = nums.size();
         if(n == 1)
         {
             return true;
         }
-        for(int i = 1; i < nums.size(); i++)
+        memo = vector(n, -1);
+        memo[0] = nums[0];
+        bool result = dp(n-2);
+        if(ans)
         {
-            if(memo[i-1] < i)
-            {
-                return false;
-            }
-            memo[i] = max(memo[i-1], i + nums[i]);
+            return result;
+        }
+        return false;
+    }
+    bool dp(int idx)
+    {
+        if(memo[idx] != -1)
+        {
+            return memo[idx];
+        }
+        memo[idx] = max(memo[idx-1], idx + nums[idx]);
+        if(memo[idx-1] < idx)
+        {
+            ans = false;
         }
         return memo[n-2] >= n-1;
     }
