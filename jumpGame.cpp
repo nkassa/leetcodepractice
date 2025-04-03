@@ -14,11 +14,7 @@ public:
             {
                 goal = i;
             }
-            else
-            {
-                return false;
-            }
         }
-        return true;
+        return goal == 0;
     }
 };
