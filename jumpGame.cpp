@@ -9,7 +9,7 @@ public:
         n = nums.size();
         memo = vector(n+1, -1);
         memo[0] = 0;
-        return dp(n) == n-1;
+        return dp(n-1) == n-1;
     }
     int dp(int idx)
     {
