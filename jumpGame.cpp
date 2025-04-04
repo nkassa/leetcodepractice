@@ -1,20 +1,21 @@
 class Solution {
 public:
+    vector<int> memo;
+    int n;
     bool canJump(vector<int>& nums) 
     {
-        int n = nums.size();
-        int goal = n-1;
-        if(n == 1)
+        n = nums.size();
+        memo = vector(n+1, -1);
+        memo[0] = 0;
+        return dp(n);
+    }
+    int dp(int idx)
+    {
+        if(memo[idx] != -1)
         {
-            return true;
+            return memo[idx];
         }
-        for(int i = n-2; i >= 0; i--)
-        {
-            if(i + nums[i] >= goal)
-            {
-                goal = i;
-            }
-        }
-        return goal == 0;
+        memo[idx] = max(dp(idx-1), idx-1 + nums[idx-1]);
+        return memo[idx];
     }
 };
