@@ -2,12 +2,14 @@ class Solution {
 public:
     vector<int> memo;
     int n;
+    vector<int> nums;
     bool canJump(vector<int>& nums) 
     {
+        this->nums = nums;
         n = nums.size();
         memo = vector(n+1, -1);
         memo[0] = 0;
-        return dp(n);
+        return dp(n) == n-1;
     }
     int dp(int idx)
     {
