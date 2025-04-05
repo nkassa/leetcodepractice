@@ -17,7 +17,7 @@ public:
         }
         return ans;
     }
-    void backtrack(int curr, int amount, vector<int>& coins, long long int size)
+    void backtrack(long long curr, int amount, vector<int>& coins, long long int size)
     {
         if(amount == 0)
         {
