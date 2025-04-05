@@ -1,23 +1,23 @@
 class Solution {
 public:
 
-    int n;
-    int ans;
+    long long n;
+    long long ans;
 
     int coinChange(vector<int>& coins, int amount) 
     {
         n = coins.size();
-        ans = n+1;
+        ans = LONG_MAX;
 
         int curr = 0;
         backtrack(curr, amount, coins, 0);
-        if(ans == n+1)
+        if(ans == LONG_MAX)
         {
             return -1;
         }
         return ans;
     }
-    void backtrack(int curr, int amount, vector<int>& coins, int size)
+    void backtrack(int curr, int amount, vector<int>& coins, long long int size)
     {
         if(amount == 0)
         {
