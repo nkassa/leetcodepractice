@@ -1,42 +1,32 @@
 class Solution {
 public:
-
-    long long n;
-    long long ans;
-
+    vector<int> memo;
+    vector<int> coins;
+    int curr;
     int coinChange(vector<int>& coins, int amount) 
     {
-        n = coins.size();
-        ans = LONG_MAX;
-
-        int curr = 0;
-        backtrack(curr, amount, coins, 0);
-        if(ans == LONG_MAX)
-        {
-            return -1;
-        }
-        return ans;
+        this->coins = coins;
+        memo = vector(amount+1, amount+12);
+        memo[0] = 0;
+        curr = amount;
+        amount += 1;
+        return dp(amount-1, amount);
     }
-    void backtrack(long long curr, int amount, vector<int>& coins, long long int size)
+    int dp(int idx, int amount)
     {
-        if(amount == 0)
+        if(memo[idx] != amount)
         {
-            ans = min(size, ans);
-            return;
-        }
-        else if(amount < 0)
-        {
-            return;
+            return memo[idx];
         }
         for(int i = 0; i < coins.size(); i++)
         {
-            curr += coins[i];
-            amount -= coins[i];
-            size += 1;
-            backtrack(curr, amount, coins, size);
-            curr -= coins[i];
-            amount += coins[i];
-            size -= 1;
+            if(curr - coins[i] >= 0)
+            {
+                curr -= coins[i];
+                memo[idx] = min(memo[idx], dp(curr, amount) + 1);
+                curr += coins[i];
+            }
         }
+        return memo[idx];
     }
 };
