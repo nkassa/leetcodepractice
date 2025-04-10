@@ -9,7 +9,7 @@ public:
         this->amount= amount;
         this->coins = coins;
         n = amount + 1;
-        memo = vector(amount+1, n);
+        memo = vector(n, n);
         memo[0] = 0;
         return dp(amount);
     }
@@ -19,11 +19,11 @@ public:
         {
             return memo[idx];
         }
-        for(int i= 0; i < coins.size(); i++)
+        for(int i = 0; i < coins.size(); i++)
         {
-            if(amount - coins[i] >= 0)
+            if(idx - coins[i] >= 0)
             {
-                memo[idx] = min(memo[idx], dp(amount-coins[i]) + coins[i]);
+                memo[idx] = min(memo[idx], dp(idx-coins[i]) + coins[i]);
             }
         }
         return memo[idx];
