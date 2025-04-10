@@ -17,6 +17,12 @@ public:
         {
             return memo[idx];
         }
-        
+        for(int i= 0; i < coins.size(); i++)
+        {
+            if(amount - coins[i] >= 0)
+            {
+                memo[idx] = min()
+            }
+        }
     }
 };
