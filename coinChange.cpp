@@ -6,6 +6,7 @@ public:
     int coinChange(vector<int>& coins, int amount) 
     {
         this->coins = coins;
+        sort(coins.begin(), coins.end());
         n = amount + 1;
         memo = vector(n, n);
         memo[0] = 0;
@@ -27,6 +28,10 @@ public:
             if(idx - coins[i] >= 0)
             {
                 memo[idx] = min(memo[idx], dp(idx-coins[i]) + 1);
+            }
+            else
+            {
+                break;
             }
         }
         return memo[idx];
