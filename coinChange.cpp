@@ -21,7 +21,10 @@ public:
         }
         for(int i = 0; i < coins.size(); i++)
         {
-             memo[idx] = min(memo[idx], dp(idx-coins[i]) + coins[i]);
+            if(idx - coins[i] >= 0)
+            {
+                memo[idx] = min(memo[idx], dp(idx-coins[i]) + 1);
+            }
         }
         return memo[idx];
     }
