@@ -1,24 +1,33 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int amount) 
-    {
-        int n = amount+1;
-        vector<int> memo(n,n);
+    vector<int> memo;
+    vector<int> coins;
+    int coinChange(vector<int>& coins, int amount) {
+        this->coins = coins;
+        sort(coins.begin(), coins.end()); // Optional, but helps early break
+        memo = vector<int>(amount + 1, -1);
         memo[0] = 0;
-        for(int i = 1; i <= amount; i++)
-        {
-            for(int j = 0; j < coins.size(); j++)
-            {
-                if(i - coins[j] >= 0)
-                {
-                    memo[i] = min(memo[i], 1 + memo[i-coins[j]]);
+        int result = dp(amount);
+        return result == INT_MAX ? -1 : result;
+    }
+
+    int dp(int idx) {
+        if (idx < 0) return INT_MAX;
+        if (memo[idx] != -1) return memo[idx];
+
+        int minCoins = INT_MAX;
+        for (int coin : coins) {
+            if (idx - coin >= 0) {
+                int res = dp(idx - coin);
+                if (res != INT_MAX) {
+                    minCoins = min(minCoins, res + 1);
                 }
+            } else {
+                break;
             }
         }
-        if(memo[amount] != n)
-        {
-            return memo[amount];
-        }
-        return -1;
+
+        memo[idx] = minCoins;
+        return memo[idx];
     }
 };
