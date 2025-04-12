@@ -11,19 +11,6 @@ public:
         {
             return 1;
         }
-        memo = vector(n+1, -1);
-        memo[0] = 0;
-        memo[1] = 1;
-        memo[2] = 1;
-        return dp(n);
-    }
-    int dp(int idx)
-    {
-        if(memo[idx] != -1)
-        {
-            return memo[idx];
-        }
-        memo[idx] = dp(idx-2) + dp(idx-1) + dp(idx-3);
-        return memo[idx];
+        return tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3);
     }
 };
