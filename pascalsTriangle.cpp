@@ -8,7 +8,7 @@ public:
             ans[0] = {1};
             return ans;
         }
-        else if(numsRow == 2)
+        else if(numRows == 2)
         {
             ans[0] = {1};
             ans[1] = {1,1};
