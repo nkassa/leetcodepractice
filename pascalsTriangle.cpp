@@ -18,8 +18,11 @@ public:
             vector<int> curr = {1};
             for(int j = 0; j < i-1; j++)
             {
-                curr.push_back(ans[i-1][j]+ans[i-1][j+1])
+                curr.push_back(ans[i-1][j]+ans[i-1][j+1]);
             }
+            curr.push_back(1);
+            ans[i] = curr;
         }
+        return ans;
     }
 };
