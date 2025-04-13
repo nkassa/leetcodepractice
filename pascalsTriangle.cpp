@@ -5,11 +5,14 @@ public:
         vector<vector<int>> ans(numRows);
         if(numRows == 1)
         {
-            return {1};
+            ans[0] = {1};
+            return ans;
         }
         else if(numsRow == 2)
         {
-            return {{1}, {1,1}};
+            ans[0] = {1};
+            ans[1] = {1,1};
+            return ans;
         }
         ans[0] = {1};
         ans[1] = {1,1};
