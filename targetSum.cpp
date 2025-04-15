@@ -1,13 +1,16 @@
 class Solution {
 public:
+    vector<int> nums;
+    int target;
+    int sol;
     int findTargetSumWays(vector<int>& nums, int target) 
-    {
-        int curr = 0;
-        int sol = 0;
-        dp(curr, sol, nums, target, 0);
+    { 
+        this->nums = nums;
+        this->target = target;
+        dp(0, 0);
         return sol;
     }
-    void dp(int curr, int& sol, vector<int>& nums, int& target, int idx)
+    void dp(int curr, int idx)
     {
         if(idx == nums.size())
         {
@@ -17,7 +20,7 @@ public:
             }
             return;
         }
-        dp(curr - nums[idx], sol, nums, target, idx + 1);
-        dp(curr + nums[idx], sol, nums, target, idx + 1);
+        dp(curr - nums[idx], idx + 1);
+        dp(curr + nums[idx], idx + 1);
     }
 };
