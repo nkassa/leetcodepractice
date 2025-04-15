@@ -8,7 +8,7 @@ public:
         {
             seen.insert(num);
         }
-        for(int num: nums)
+        for(auto num: seen)
         {
             if(seen.find(num-1) != seen.end())
             {
