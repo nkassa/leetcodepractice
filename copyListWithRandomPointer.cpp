@@ -104,3 +104,29 @@ curr = curr->next
 copyCurr = copyCurr->next
 
 */
+
+/*
+Map Method:
+class Solution {
+public:
+    Node* copyRandomList(Node* head) 
+    {
+        unordered_map<Node*, Node*> list;
+        list[nullptr] = nullptr;
+        Node* curr = head;
+        while(curr)
+        {
+            list[curr] = new Node(curr->val);
+            curr = curr->next;
+        }
+        curr = head;
+        while(curr)
+        {
+            list[curr]->next = list[curr->next];
+            list[curr]->random = list[curr->random];
+            curr = curr->next;
+        }
+        return list[head];
+    }
+};
+*/
