@@ -26,9 +26,10 @@ public:
         {
             curr = new Node(head->val);
             curr->random = head->random;
+            curr->next = nullptr;
             head = head->next;
             curr = curr->next;
         }
-        return ans;
+        return ans->next;
     }
 };
