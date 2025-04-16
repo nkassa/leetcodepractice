@@ -18,12 +18,12 @@ public:
             return 0;
         }
         queue<TreeNode*> queue;
+        int ans = 0;
         queue.push(root);
-        int cnt = 0;
         while(!queue.empty())
         {
-            cnt++;
             int size = queue.size();
+            ans++;
             for(int i = 0; i < size; i++)
             {
                 TreeNode* node = queue.front();
@@ -38,6 +38,6 @@ public:
                 }
             }
         }
-        return cnt;
+        return ans;
     }
 };
