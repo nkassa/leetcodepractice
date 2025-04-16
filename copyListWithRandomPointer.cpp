@@ -18,17 +18,34 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) 
     {
-        Node* curr = new Node(0);
-        curr->random = nullptr;
-        curr->next = nullptr;
-        Node* ans = curr;
-        while(head != nullptr)
+        if(!head)
         {
-            curr->next = new Node(head->val);
-            curr->next->random = head->random;
-            curr = curr->next;
-            head = head->next;
+            return nullptr;
         }
-        return ans->next;
+        Node* curr = head;
+        while(curr)
+        {
+            Node* copy = new Node(curr->val);
+            copy->next = curr->next;
+            curr->next = copy;
+            curr = copy->next;
+        }
+        curr = head;
+        while(curr)
+        {
+            if(curr->random)
+            {
+                curr->next->random = curr->random->next;
+            }
+            curr = curr->next->next;
+        }
+        Node* ans = head->next;
+        curr = ans;
+        while(curr && curr->next)
+        {
+            curr->next = curr->next->next;
+            curr = curr->next;
+        }
+        return ans;
     }
 };
