@@ -40,11 +40,17 @@ public:
             curr = curr->next->next;
         }
         Node* ans = head->next;
-        curr = ans;
-        while(curr && curr->next)
+        curr = head;
+        Node* copyCurr = ans;
+        while(curr)
         {
             curr->next = curr->next->next;
+            if(copyCurr->next)
+            {
+                copyCurr->next = copyCurr->next->next;
+            }
             curr = curr->next;
+            copyCurr = copyCurr->next;
         }
         return ans;
     }
