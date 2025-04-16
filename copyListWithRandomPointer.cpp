@@ -55,3 +55,52 @@ public:
         return ans;
     }
 };
+
+// step 1
+/*
+
+orgininal list = 1->2->3
+
+change list to = 1->1'->2->2'->3->3'
+
+steps:
+curr = head
+while curr:
+copy = new node with orig val
+copy->next = curr->next
+curr->next = copy
+curr = copy->next
+
+*/
+
+// step 2
+/*
+
+copy over the random access
+
+steps:
+curr = head
+while curr:
+if curr->random
+  curr->next->random = curr->random->next
+curr = curr->next->next
+*/
+
+// step 3
+/*
+
+separate the orig and copy
+
+steps:
+ans = head->next
+curr = head
+copyCurr = ans
+while curr:
+curr->next = curr->next->next
+if copyCUrr->next:
+copyCurr->next = copyCurr->next->next
+
+curr = curr->next
+copyCurr = copyCurr->next
+
+*/
