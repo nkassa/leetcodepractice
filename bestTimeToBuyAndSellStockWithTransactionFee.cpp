@@ -7,7 +7,7 @@ public:
     {
         this->prices = prices;
         this->fee = fee;
-        memo = vector(prices.size(), vector<int>(2, 0));
+        memo = vector(prices.size(), vector<int>(2, -1));
         return dp(0, 0);
     }
     int dp(int i, int holding)
@@ -15,6 +15,10 @@ public:
         if(i == prices.size())
         {
             return 0;
+        }
+        if(memo[i][holding] != -1)
+        {
+            return memo[i][holding];
         }
         int ans = dp(i+1, holding);
         if(holding == 1)
