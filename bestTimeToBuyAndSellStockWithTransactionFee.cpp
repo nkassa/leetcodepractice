@@ -1,13 +1,13 @@
 class Solution {
 public:
     vector<int> prices;
-    vector<vector<int,int>> memo;
+    vector<vector<int>> memo;
     int fee;
     int maxProfit(vector<int>& prices, int fee) 
     {
         this->prices = prices;
         this->fee = fee;
-        memo = vector(prices.size(), vector(2, 0));
+        memo = vector(prices.size(), vector<int>(2, 0));
         return dp(0, 0);
     }
     int dp(int i, int holding)
@@ -23,7 +23,7 @@ public:
         }
         else
         {
-            ans = max(ans, dp(i+1, 1) - prices[i])
+            ans = max(ans, dp(i+1, 1) - prices[i]);
         }
         memo[i][holding] = ans;
         return memo[i][holding];
