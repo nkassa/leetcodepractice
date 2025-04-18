@@ -3,14 +3,14 @@ public:
     vector<int> memo;
     int climbStairs(int n) 
     {
-        if(n < 2)
+        if(n <= 1)
         {
             return 1;
         }
-        memo = vector(n, -1);
+        memo = vector(n+1, -1);
         memo[0] = 1;
-        memo[1] = 2;
-        return dp(n-1);
+        memo[1] = 1;
+        return dp(n);
     }
     int dp(int idx)
     {
