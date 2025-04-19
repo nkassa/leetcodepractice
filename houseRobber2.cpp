@@ -5,10 +5,22 @@ public:
     int rob(vector<int>& nums) 
     {
         this->nums = nums;
-        nums.push_back(0);
         int n = nums.size();
+        if(n == 1)
+        {
+            return nums[0];
+        }
         memo = vector(n, -1);
-        memo[n-1] = nums[n-1];
+        if(nums[0] > nums[n-1])
+        {
+            nums[n-1] = 0;
+        }
+        else
+        {
+            nums[0] = 0
+        }
+        memo[0] = nums[0];
+        memo[1] = max(nums[0], nums[1]);
         return dp(n-1);
     }
     int dp(int idx)
