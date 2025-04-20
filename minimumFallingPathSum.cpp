@@ -27,7 +27,7 @@ public:
         {
             return memo[row][col];
         }
-        int sum = 101;
+        int sum = INT_MAX;
         if(row > 0)
         {
             sum = min(sum, dp(row-1, col));
