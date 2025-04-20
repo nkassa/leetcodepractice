@@ -14,7 +14,10 @@ public:
         for(int i = 0; i < n; i++)
         {
             memo[0][i] = matrix[0][i];
-            ans = min(ans, dp(i, m));
+        }
+        for(int i = 0; i < n; i++)
+        {
+            ans = min(ans, dp(m-1, i));
         }
         return ans;
     }
@@ -24,7 +27,7 @@ public:
         {
             return memo[row][col];
         }
-        int sum = 0;
+        int sum = 101;
         if(row > 0)
         {
             sum = min(sum, dp(row-1, col));
