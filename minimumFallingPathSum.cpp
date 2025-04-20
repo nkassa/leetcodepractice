@@ -33,7 +33,7 @@ public:
         {
             sum = min(sum, dp(row-1, col-1));
         }
-        if(row > 0 && col < n)
+        if(row > 0 && col < n-1)
         {
             sum = min(sum, dp(row-1, col+1));
         }
