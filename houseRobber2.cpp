@@ -1,8 +1,10 @@
 class Solution {
 public:
+    vector<int> memo;
+    vector<int> nums;
     int rob(vector<int>& nums) 
     {
-        vector<int> memo;
+        this->nums = nums;
         int n = nums.size();
         if(n == 1)
         {
@@ -10,22 +12,28 @@ public:
         }
         if(n == 2)
         {
-            return 0;
+            return max(nums[0], nums[1]);
         }
+        if(n == 3)
+        {
+            int x = max(nums[0], nums[1]);
+            return max(x, nums[2]);
+        }
+        memo = vector(nums.size(), -1);
         memo[0] = nums[0];
-        memo[1] = nums[1];
+        memo[1] = max(nums[0], nums[1]);
         int ans = 0;
-        int curr = 0;
-        for(int i = 2; i < n-1; i++)
-        {
-            curr += memo[i-2] + nums[i];
-        }
-        ans = max(curr, ans);
-        for(int i = 3; i < n-1; i++)
-        {
-            curr += memo[i-2] + nums[i];
-        }
-        ans = max(curr, ans);
+        ans = max(ans, dp(n-2));
+        ans = max(ans, dp(n-1));
         return ans;
+    }
+    int dp(int idx)
+    {
+        if(memo[idx] != -1)
+        {
+            return memo[idx];
+        }
+        memo[idx] = max(dp(idx-2) + nums[idx], dp(idx-1));
+        return memo[idx];
     }
 };
