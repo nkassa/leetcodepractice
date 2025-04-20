@@ -1,9 +1,8 @@
 class Solution {
 public:
-    vector<int> nums;
-    vector<int> memo;
     int rob(vector<int>& nums) 
     {
+        vector<int> memo;
         int n = nums.size();
         if(n == 1)
         {
@@ -13,12 +12,20 @@ public:
         {
             return 0;
         }
-        memo = vector(n, -1);
         memo[0] = nums[0];
-        memo[1] = max(nums[])
-        for(int i = 0; i < n -1; i++)
+        memo[1] = nums[1];
+        int ans = 0;
+        int curr = 0;
+        for(int i = 2; i < n-1; i++)
         {
-            memo[2] = 
+            curr += memo[i-2] + nums[i];
         }
+        ans = max(curr, ans);
+        for(int i = 3; i < n-1; i++)
+        {
+            curr += memo[i-2] + nums[i];
+        }
+        ans = max(curr, ans);
+        return ans;
     }
 };
