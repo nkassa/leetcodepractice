@@ -11,37 +11,33 @@ public:
         n = grid[0].size();
         this->grid = grid;
         seen = vector(m, vector<bool>(n, false));
-        queue<pair<int, int>> queue;
         int ans = 0;
         for(int row = 0; row < m; row++)
         {
             for(int col = 0; col < n; col++)
             {
-                if(!seen[row][col] && grid[row][col] == '1')
+                if(grid[row][col] == '1' && !seen[row][col])
                 {
                     ans++;
-                    queue.push({row,col});
                     seen[row][col] = true;
-                    while(!queue.empty())
-                    {
-                        int Row = queue.front().first;
-                        int Col = queue.front().second;
-                        queue.pop();
-                        for(vector<int> direction: directions)
-                        {
-                            int nextRow = direction[0] + Row;
-                            int nextCol = direction[1] + Col;
-                            if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
-                            {
-                                queue.push({nextRow, nextCol});
-                                seen[nextRow][nextCol] = true;
-                            }
-                        }
-                    }
+                    dfs(row,col);
                 }
             }
         }
         return ans;
+    }
+    void dfs(int row, int col)
+    {
+        for(vector<int> direction: directions)
+        {
+            int nextRow = direction[0] + row;
+            int nextCol = direction[1] + col;
+            if(valid(nextRow, nextCol) && !seen[nextRow][nextCol])
+            {
+                seen[nextRow][nextCol] = true;
+                dfs(nextRow, nextCol);
+            }
+        }
     }
     bool valid(int row, int col)
     {
