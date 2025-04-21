@@ -3,7 +3,6 @@ public:
     int n;
     int rob(vector<int>& nums) 
     {
-        int ans = 0;
         n = nums.size();
         if(n == 1)
         {
@@ -13,9 +12,7 @@ public:
         {
             return max(nums[0], nums[1]);
         }
-        ans = dp(0, n-1, nums);
-        ans = max(ans, dp(1, n, nums));
-        return ans;
+        return max(dp(0, n-1, nums), dp(1, n, nums));
     }
     int dp(int start, int end, vector<int>& nums)
     {
