@@ -29,12 +29,12 @@ public:
                     in_degree[prerequisites[i][0]]--;
                     if(in_degree[prerequisites[i][0]] == 0)
                     {
-                        queue.push(in_degree[prerequisites[i][0]]);
+                        queue.push(prerequisites[i][0]);
                     }
                 }
             }
         }
-        if(idx != numCourses)
+        if(idx  != numCourses)
         {
             return false;
         }
