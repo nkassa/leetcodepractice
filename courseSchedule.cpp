@@ -2,15 +2,14 @@ class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) 
     {
-        int n = prerequisites.size();
-        vector<vector<int>> list(numCourses);
+        vector<vector<int>> adj(numCourses);
         vector<int> indegree(numCourses, 0);
+        queue<int> queue;
         for(vector<int> pre: prerequisites)
         {
-            list[pre[1]].push_back(pre[0]);
             indegree[pre[0]]++;
+            adj[pre[1]].push_back(pre[0]);
         }
-        queue<int> queue;
         for(int i = 0; i < numCourses; i++)
         {
             if(indegree[i] == 0)
@@ -18,21 +17,21 @@ public:
                 queue.push(i);
             }
         }
-        int cnt = 0;
+        int count = 0;
         while(!queue.empty())
         {
-            int in = queue.front();
+            int course = queue.front();
             queue.pop();
-            cnt++;
-            for(int course: list[in])
+            count++;
+            for(int newCourse: adj[course])
             {
-                indegree[course]--;
-                if(indegree[course] == 0)
+                indegree[newCourse]--;
+                if(indegree[newCourse] == 0)
                 {
-                    queue.push(course);
+                    queue.push(newCourse);
                 }
             }
         }
-        return cnt == numCourses;
+        return count == numCourses;
     }
 };
