@@ -3,6 +3,7 @@ public:
     bool isAnagram(string s, string t) 
     {
         unordered_map<char,int> count;
+        unordered_map<char,int> count2;
         for(char c: s)
         {
             count[c]++;
@@ -19,9 +20,9 @@ public:
             }
             else
             {
-                count[c]++;
+                count2[c]++;
             }
         }
-        return count.size() == 0;
+        return count.size() == 0 && count2.size() == 0;
     }
 };
