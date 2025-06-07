@@ -5,7 +5,7 @@ public:
         string str = "";
         for(int i = 0; i < s.size(); i++)
         {
-            if(isalpha(s[i]))
+            if(isalnum(s[i]))
             {
                 str += tolower(s[i]);
             }
