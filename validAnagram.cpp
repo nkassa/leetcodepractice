@@ -10,19 +10,24 @@ public:
         }
         for(char c: t)
         {
-            if(count.find(c) != count.end())
-            {
-                count[c]--;
-                if(count[c] == 0)
-                {
-                    count.erase(c);
-                }
-            }
-            else
-            {
-                count2[c]++;
-            }
+            count2[c]++;
         }
-        return count.size() == 0 && count2.size() == 0;
+        for(auto [key, val]: count)
+        {
+            if(val != count2[key])
+            {
+                return false;
+            }
+            
+        }
+        for(auto [key, val]: count2)
+        {
+            if(val != count[key])
+            {
+                return false;
+            }
+            
+        }
+        return true;
     }
 };
