@@ -24,44 +24,31 @@ public:
         {
             return nullptr;
         }
-        Node* leftMost = root;
-        while(leftMost)
+        queue<Node*> queue;
+        queue.push(root);
+        while(!queue.empty())
         {
-            Node* currLevel = leftMost;
-            leftMost = nullptr;
             Node* prev = nullptr;
-            while(currLevel)
+            int size = queue.size();
+            for(int i = 0; i < size; i++)
             {
-                if(currLevel->left)
+                Node* node = queue.front();
+                queue.pop();
+                if(node->left)
                 {
-                    if(prev)
-                    {
-                        prev->next = currLevel->left;
-                    }
-                    else
-                    {
-                        leftMost = currLevel->left;
-                    }
-                    prev = currLevel->left;
+                    queue.push(node->left);
                 }
-                if(currLevel->right)
+                if(node->right)
                 {
-                    if(prev)
-                    {
-                        prev->next = currLevel->right;
-                    }
-                    else
-                    {
-                        leftMost = currLevel->right;
-                    }
-                    prev = currLevel->right;
+                    queue.push(node->right);
                 }
-                currLevel = currLevel->next;
+                if(prev)
+                {
+                    prev->next = node;
+                }
+                prev = node;
             }
         }
         return root;
     }
 };
-
-
-
