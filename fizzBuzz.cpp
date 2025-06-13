@@ -2,24 +2,24 @@ class Solution {
 public:
     vector<string> fizzBuzz(int n) 
     {
-        vector<string> ans;
-        for(int num = 1; num <= n; num++)
+        vector<string> ans(n);
+        for(int i = 1; i <= n; i++)
         {
-            if(num % 3 == 0 && num % 5 == 0)
+            if(i % 3 == 0 && i % 5 == 0)
             {
-                ans.push_back("FizzBuzz");
+                ans[i-1] = "FizzBuzz";
             }
-            else if(num % 3 == 0)
+            else if(i % 3 == 0)
             {
-                ans.push_back("Fizz");
+                ans[i-1] = "Fizz";
             }
-            else if(num % 5 == 0)
+            else if(i % 5 == 0)
             {
-                ans.push_back("Buzz");
+                ans[i-1] = "Buzz";
             }
             else
             {
-                ans.push_back(to_string(num));
+                ans[i-1] = to_string(i);
             }
         }
         return ans;
