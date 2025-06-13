@@ -2,12 +2,12 @@ class Solution {
 public:
     int countPrimes(int n) 
     {
-        vector<bool> list(n+1, true);
-        for(int p = 2; p * p <= n; p++)
+        vector<bool> list(n, true);
+        for(int p = 2; p * p < n; p++)
         {
             if(list[p])
             {
-                for(int i = p * p; i <= n; i++)
+                for(int i = p * p; i < n; i += p)
                 {
                     list[i] = false;
                 }
