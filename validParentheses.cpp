@@ -2,24 +2,21 @@ class Solution {
 public:
     bool isValid(string s) 
     {
-        unordered_map<char,char> count = {{'(',')'}, {'[',']'}, {'{','}'}};
+        unordered_map<char,char> count = {{'}', '{'}, {']', '['}, {')', '('}};
         stack<char> stack;
         for(char c: s)
         {
             if(count.find(c) == count.end())
             {
-                if(!stack.empty() && count[stack.top()] == c)
-                {
-                    stack.pop();
-                }
-                else if(stack.empty() || count[stack.top()] != c)
-                {
-                    return false;
-                }
+                stack.push(c);
             }
             else
             {
-                stack.push(c);
+                if(stack.empty() || stack.top() != count[c])
+                {
+                    return false;
+                }
+                stack.pop();
             }
         }
         return stack.size() == 0;
