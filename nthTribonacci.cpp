@@ -1,23 +1,25 @@
 class Solution {
 public:
+    vector<int> memo;
     int tribonacci(int n) 
     {
-        if(n == 0)
+        if(n <= 1)
         {
-            return 0;
+            return n;
         }
-        else if(n == 1 || n == 2)
-        {
-            return 1;
-        }
-        vector<int> memo(n+1, -1);
-        memo[0]= 0;
+        memo = vector(n+1, -1);
+        memo[0] = 0;
         memo[1] = 1;
         memo[2] = 1;
-        for(int i = 3; i <= n; i++)
+        return dp(n);
+    }
+    int dp(int idx)
+    {
+        if(memo[idx] != -1)
         {
-            memo[i] = memo[i-1] + memo[i-2] + memo[i-3];
+            return memo[idx];
         }
-        return memo[n];
+        memo[idx] = dp(idx-3) + dp(idx-2) + dp(idx-1);
+        return memo[idx];
     }
 };
