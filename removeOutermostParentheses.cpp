@@ -2,32 +2,26 @@ class Solution {
 public:
     string removeOuterParentheses(string s) 
     {
-        vector<string> list;
-        int cnt = 1;
-        string str = s[0];
-        for(int i = 1; i < s.size(); i++)
+        int cnt = 0;
+        string ans = "";
+        for(char c: s)
         {
-            if(s[i] == '(')
+            if(c == '(')
             {
+                if(cnt > 0)
+                {
+                    ans += c;
+                }
                 cnt++;
             }
             else
             {
                 cnt--;
+                if(cnt > 0)
+                {
+                    ans += c;
+                }
             }
-            str += s[i];
-            if(cnt == 0)
-            {
-                list.push_back(str);
-            }
-        }
-        string ans = "";
-        for(int i = 0; i < list.size(); i++)
-        {
-            string curr = list[i];
-            curr.pop_back();
-            curr.erase(curr.begin());
-            ans += curr;
         }
         return ans;
     }
