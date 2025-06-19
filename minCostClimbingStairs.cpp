@@ -8,7 +8,7 @@ public:
         memo = vector(cost.size(), -1);
         memo[0] = cost[0];
         memo[1] = cost[1];
-        return dp(min(cost.size()-1, cost.size()-2));
+        return min(dp(cost.size()-1), dp(cost.size()-2));
     }
     int dp(int idx)
     {
