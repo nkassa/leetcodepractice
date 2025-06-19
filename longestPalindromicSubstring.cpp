@@ -1,44 +1,29 @@
 class Solution {
 public:
+    unordered_map<int, string> count;
     string longestPalindrome(string s) 
     {
-        if(s.size() == 0 || s.size() == 1)
-            return s;
-
-        else 
+        for(int i = 0; i < s.size(); i++)
         {
-            string pal = "";
-            int low = 0;
-            int high = 0;
-            string sub = "";
-            for(int i = 0; i < s.size()-1; i++)
-            {
-                low = i;
-                high = i + 1;
-                while(low >= 0 && high < s.size())
-                {
-                    if(low == i && s[low] == s[high])
-                    {
-                        high += 1;
-                        continue;
-                    }
-                    if(low > 0 && s[low-1] == s[high])
-                    {
-                        low -= 1;
-                        high += 1;
-                    }
-                    else 
-                    {
-                        break;
-                    }
-                }
-                sub = s.substr(low, high-low);
-                if ( pal.length() < sub.length())
-                {
-                    pal = sub;
-                }
-            }  
-            return pal; 
+            pali(s, i, i+1);
+            pali(s, i, i);
         }
+        int maxi = 0;
+        for(auto [key,val]: count)
+        {
+            maxi = max(maxi, key);
+        }
+        return count[maxi];
+    }
+    void pali(string& s, int left, int right)
+    {
+        int cnt = 0;
+        while(left >= 0 && right < s.size() && s[left] == s[right])
+        {
+            left--;
+            right++;
+        }
+        cnt = right - left -1;
+        count[cnt] = s.substr(left+1, cnt);
     }
 };
