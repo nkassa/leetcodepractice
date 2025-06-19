@@ -5,11 +5,10 @@ public:
     int minCostClimbingStairs(vector<int>& cost) 
     {
         this->cost = cost;
-        memo = vector(cost.size()+1, -1);
-        memo[0] = 0;
-        memo[1] = 0;
-
-        return dp(cost.size());
+        memo = vector(cost.size(), -1);
+        memo[0] = cost[0];
+        memo[1] = cost[1];
+        return dp(min(cost.size()-1, cost.size()-2));
     }
     int dp(int idx)
     {
@@ -17,7 +16,7 @@ public:
         {
             return memo[idx];
         }
-        memo[idx] = min(dp(idx-2) + cost[idx-2], dp(idx-1) + cost[idx-1]);
+        memo[idx] = min(dp(idx-1), dp(idx-2)) + cost[idx];
         return memo[idx];
     }
 };
