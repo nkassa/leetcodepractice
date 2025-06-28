@@ -1,25 +1,24 @@
 class Solution {
 public:
+    vector<int> list;
     int fib(int n) 
     {
-        if(n == 1 || n == 0)
+        if(n <= 1)
         {
             return n;
         }
-        vector<int> list(n+1, -1);
-        return dp(n, list);
+        list = vector(n+1, -1);
+        list[0] = 0;
+        list[1] = 1;
+        return dp(n);
     }
-    int dp(int n, vector<int>& list)
+    int dp(int idx)
     {
-        if(n == 0 || n == 1)
+        if(list[idx] != -1)
         {
-            return n;
+            return list[idx];
         }
-        if(list[n] >= 0)
-        {
-            return list[n];
-        }
-        list[n] = dp(n-1, list) + dp(n-2, list);
-        return list[n];
+        list[idx] = dp(idx-1) + dp(idx-2);
+        return list[idx];
     }
 };
