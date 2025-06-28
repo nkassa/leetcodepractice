@@ -19,10 +19,6 @@ public:
             }
             size--;
         }
-        if(ans.back() == '-')
-        {
-            ans.pop_back();
-        }
         reverse(ans.begin(), ans.end());
         return ans;
     }
