@@ -10,17 +10,8 @@ public:
                 str += tolower(c);
             }
         }
-        int left = 0;
-        int right = str.size()-1;
-        while(left <= right)
-        {
-            if(str[left] != str[right])
-            {
-                return false;
-            }
-            right--;
-            left++;
-        }
-        return true;
+        string strCopy = str;
+        reverse(str.begin(), str.end());
+        return strCopy == str;
     }
 };
