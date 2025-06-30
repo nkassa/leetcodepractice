@@ -12,8 +12,8 @@ public:
                 if(count[fruits[left]] == 0)
                 {
                     count.erase(fruits[left]);
+                    left++;
                 }
-                left++;
             }
             count[fruits[right]]++;
             ans = max(ans, right-left+1);
