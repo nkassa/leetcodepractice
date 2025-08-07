@@ -16,4 +16,4 @@ public:
         }
         return i == bits.size()-1;
     }
-};
+};//
